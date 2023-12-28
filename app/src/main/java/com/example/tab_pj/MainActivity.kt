@@ -2,7 +2,6 @@ package com.example.tab_pj
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 
 
@@ -12,13 +11,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
-        /*
+        val NumFragment: Fragment = NumFragment()
+        val PhotoFragment: Fragment = UserFragment()
+        val ExtraFragment: Fragment = ExtraFragment()
 
-            val homeFragment: Fragment = namepageFragment()
-
-            val userFragment: Fragment = UserFragment()
-            val settingFragment: Fragment = SettingFragment()
-             */
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
 
@@ -26,9 +22,9 @@ class MainActivity : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val transaction = supportFragmentManager.beginTransaction()
                 when(tab?.text) {
-                    "tab1" -> transaction.replace(R.id.tabContent, homeFragment() )
-                    "tab2" -> transaction.replace(R.id.tabContent, TwoFragment() )
-                    "tab3" -> transaction.replace(R.id.tabContent, ThreeFragment() )
+                    "tab1" -> transaction.replace(R.id.tabContent, NumFragment )
+                    "tab2" -> transaction.replace(R.id.tabContent, PhotoFragment )
+                    "tab3" -> transaction.replace(R.id.tabContent, ExtraFragment )
                 }
                 transaction.commit()
 
