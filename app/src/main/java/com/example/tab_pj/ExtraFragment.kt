@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class NumFragment : Fragment () {
+class ExtraFragment : Fragment () {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_num, container, false)
+        return inflater.inflate(R.layout.fragment_extra, container, false)
     }
 }

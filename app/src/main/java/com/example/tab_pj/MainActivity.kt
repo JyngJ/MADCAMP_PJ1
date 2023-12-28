@@ -3,6 +3,7 @@ package com.example.tab_pj
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         val NumFragment: Fragment = NumFragment()
-        val PhotoFragment: Fragment = UserFragment()
+        val PhotoFragment: Fragment = PhotoFragment()
         val ExtraFragment: Fragment = ExtraFragment()
 
 
