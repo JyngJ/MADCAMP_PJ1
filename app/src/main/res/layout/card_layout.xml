@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
-    android:layout_margin="5dp"
-    card_view:cardBackgroundColor="#5530BD"
+    android:layout_margin="8dp"
+    card_view:cardBackgroundColor="@color/primary_card"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="4dp"
-    card_view:contentPadding="4dp"
+    card_view:cardElevation="2dp"
+    card_view:contentPadding="2dp"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/item_image"
@@ -33,9 +33,12 @@
             android:layout_below="@+id/item_image"
             android:layout_alignLeft="@id/item_image"
             android:layout_alignRight="@id/item_image"
+
             android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="12dp" />
+
+            android:textColor="@color/primary_card_highlight"
+
+            android:textSize="16dp" />
 
         <!--        <TextView-->
 <!--            android:layout_width="wrap_content"-->
