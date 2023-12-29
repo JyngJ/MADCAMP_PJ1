@@ -3,4 +3,5 @@
     <string name="tab1">Number</string>
     <string name="tab2">Photos</string>
     <string name="tab3">Extra</string>
+    <string name="page_title">Page_Title</string>
 </resources>
