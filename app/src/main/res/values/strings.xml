@@ -4,5 +4,7 @@
     <string name="tab2">Photos</string>
     <string name="tab3">Extra</string>
     <string name="page_title">Page_Title</string>
+    <string name="add_number">Add name and number</string>
+    <string name="add_photo">Add photo and pair that with name</string>
 </resources>
 

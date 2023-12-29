@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
-    var titles = arrayOf("John Doe", "2", "정산디", "4", "5", "6", "7", "8", "9", "10" )
+    var titles = arrayOf("고영희", "퐁듀", "아르", "봉숙이", "복만이", "6", "7", "8", "9", "10" )
     var details = arrayOf("01-234-5678", "2", "010-7732-7252", "4", "5", "6", "7", "8", "9", "10" )
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
