@@ -8,7 +8,7 @@
     tools:context=".NumFragment">
 
     <ListView
-        android:id="@+id/messageListView"
+        android:id="@+id/numListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -20,7 +20,8 @@
             android:layout_gravity="center"
             android:textSize="128px"
             android:text="Extra" />
-
     </FrameLayout>
+
+
 
 </LinearLayout>
