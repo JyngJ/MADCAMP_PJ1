@@ -7,22 +7,6 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/page_title"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
