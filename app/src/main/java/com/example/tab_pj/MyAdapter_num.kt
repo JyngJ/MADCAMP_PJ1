@@ -21,6 +21,7 @@ import android.view.MenuInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 
 
@@ -169,6 +170,8 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
                 notifyDataSetChanged() // 리사이클러뷰 갱신
 
                 updateJsonFile(context) // JSON 파일 업데이트
+                Toast.makeText(context, context.getString(R.string.modify_success), Toast.LENGTH_SHORT).show()
+
             }
             dialog.dismiss()
         }
