@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
+import android.widget.ImageView
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.File
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
@@ -21,6 +24,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
+        var cancelButton: ImageView = itemView.findViewById(R.id.cancel_button)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
@@ -31,6 +35,10 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemTitle.text = dataList[position].title
         holder.itemDetail.text = dataList[position].detail
+        holder.cancelButton.setOnClickListener {
+            // 해당 카드를 삭제하는 로직을 구현
+            removeCard(holder.adapterPosition, holder.itemView.context)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -49,4 +57,42 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
             notifyDataSetChanged()
         }
     }
+
+    fun removeCard(position: Int, context: Context) {
+        if (position < 0 || position >= dataList.size) return
+
+        // 카드를 리스트에서 삭제
+        dataList.removeAt(position)
+
+        // JSON 파일 업데이트
+        updateJsonFile(context)
+
+        // 리사이클러뷰 갱신
+        notifyDataSetChanged()
+    }
+
+    private fun updateJsonFile(context: Context) {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+
+        if (!file.exists()) {
+            // JSON 파일이 존재하지 않으면 아무 작업도 수행하지 않음
+            return
+        }
+
+        // JSON 배열 생성
+        val jsonArray = JSONArray()
+        for (dataItem in dataList) {
+            val jsonObject = JSONObject()
+            jsonObject.put("title", dataItem.title)
+            jsonObject.put("detail", dataItem.detail)
+            jsonArray.put(jsonObject)
+        }
+
+        // JSON 파일 업데이트
+        context.openFileOutput(jsonFileName, Context.MODE_PRIVATE).use { outputStream ->
+            outputStream.write(jsonArray.toString().toByteArray())
+        }
+    }
+
 }

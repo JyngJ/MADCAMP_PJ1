@@ -6,5 +6,6 @@
     <string name="page_title">Page_Title</string>
     <string name="add_number">Add name and number</string>
     <string name="add_photo">Add photo and pair that with name</string>
+    <string name="cancel_button_description">Delete card with this btn</string>
 </resources>
 

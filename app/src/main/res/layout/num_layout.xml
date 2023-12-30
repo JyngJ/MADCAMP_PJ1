@@ -41,6 +41,21 @@
             tools:ignore="UnknownIdInLayout">
         </TextView>
 
+        <ImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/delete"
+
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/cancel_button_description"
+            />
+
     </RelativeLayout>
 
 
