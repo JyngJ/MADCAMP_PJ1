@@ -1,5 +1,6 @@
 package com.example.tab_pj
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
 import android.widget.ImageView
+import android.widget.PopupMenu
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import android.view.MenuInflater
+
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
@@ -37,7 +41,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         holder.itemDetail.text = dataList[position].detail
         holder.cancelButton.setOnClickListener {
             // 해당 카드를 삭제하는 로직을 구현
-            removeCard(holder.adapterPosition, holder.itemView.context)
+            showPopupMenu(holder.itemView, position)
         }
     }
 
@@ -56,6 +60,25 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
             notifyDataSetChanged()
         }
+    }
+
+
+    private fun showPopupMenu(view: View, position: Int) {
+        val popupMenu = PopupMenu(view.context, view)
+        popupMenu.menuInflater.inflate(R.menu.popupmenu_deleteormodify, popupMenu.menu)
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_delete -> {
+                    // 해당 카드를 삭제하는 로직을 구현하고, 현재 아이템의 위치(position)를 전달
+                    removeCard(position, view.context)
+                    true
+                }
+                else -> false
+            }
+        }
+
+        popupMenu.show()
     }
 
     fun removeCard(position: Int, context: Context) {
