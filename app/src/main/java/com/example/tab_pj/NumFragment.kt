@@ -31,7 +31,7 @@ class NumFragment : Fragment() {
         adapter.setDataFromJson(requireContext(), "Num.json")
         recyclerView.adapter = adapter
 
-        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        val fab = view.findViewById<FloatingActionButton>(R.id.fabNumber)
         fab.setOnClickListener {
             showDialog()
         }
