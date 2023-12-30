@@ -13,10 +13,11 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
 //    var titles = arrayOf("John Doe", "2", "정산디", "4", "5", "6", "7", "8", "9", "10" )
 //    var details = arrayOf("01-234-5678", "2", "010-7732-7252", "4", "5", "6", "7", "8", "9", "10" )
-    private var dataList = mutableListOf<DataItem>()
+    var dataList = mutableListOf<DataItem>()
     data class DataItem(val title: String, val detail: String)
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
     }

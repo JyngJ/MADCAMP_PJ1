@@ -17,6 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
 
 class NumFragment : Fragment() {
@@ -106,7 +109,11 @@ class NumFragment : Fragment() {
     }
 
     private fun updateRecyclerView(context: Context, jsonFileName: String) {
-        adapter.setDataFromJson(context, jsonFileName)
+        val jsonString = File(context.filesDir, jsonFileName).readText()
+        val listType = object : TypeToken<List<MyAdapter_num.DataItem>>() {}.type
+        val newDataList = Gson().fromJson<List<MyAdapter_num.DataItem>>(jsonString, listType).toMutableList()
+
+        adapter.dataList = newDataList
         adapter.notifyDataSetChanged()
     }
 }
