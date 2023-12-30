@@ -7,12 +7,14 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONObject
@@ -49,7 +51,7 @@ class NumFragment : Fragment() {
         // 내부 저장소에서 파일 읽기
         adapter.setDataFromJson(requireContext(), "Num.json")
 
-        val fab = view.findViewById<FloatingActionButton>(R.id.fabNumber)
+        val fab = view.findViewById<ExtendedFloatingActionButton>(R.id.fabNumber)
         fab.setOnClickListener {
             showDialog()
         }
@@ -58,7 +60,7 @@ class NumFragment : Fragment() {
     }
 
     private fun showDialog() {
-        val dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.popup_number_input)
 
         val metrics = DisplayMetrics()
@@ -70,8 +72,6 @@ class NumFragment : Fragment() {
 
         val firstTextField = dialog.findViewById<EditText>(R.id.editTextName)
         val secondTextField = dialog.findViewById<EditText>(R.id.editTextNumber)
-
-
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 
@@ -88,6 +88,7 @@ class NumFragment : Fragment() {
         cancelButton.setOnClickListener {
             dialog.dismiss()
         }
+
 
         dialog.show()
     }
