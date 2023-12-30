@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.File
 
 class NumFragment : Fragment() {
     override fun onCreateView(
@@ -36,14 +39,15 @@ class NumFragment : Fragment() {
 
         return view
     }
+
     private fun showDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.popup_number_input)
 
         val metrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
-        val width = metrics.widthPixels - (8 * 4)  // 폰 가로 길이에서 마진 제외
-        val popupWidth = (width / 4) * 3 + 16.dpToPixels(requireContext()) // 팝업 너비 계산
+        val width = metrics.widthPixels - (8 * 4)
+        val popupWidth = (width / 4) * 3 + 16.dpToPixels(requireContext())
 
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
 
@@ -53,7 +57,12 @@ class NumFragment : Fragment() {
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 
         saveButton.setOnClickListener {
-            // JSON 저장 로직 (현재 주석 처리)
+            val firstText = firstTextField.text.toString()
+            val secondText = secondTextField.text.toString()
+
+            val newJsonData = createJsonData(firstText, secondText)
+            addDataToJson(requireContext(), newJsonData)
+
             dialog.dismiss()
         }
 
@@ -64,10 +73,37 @@ class NumFragment : Fragment() {
         dialog.show()
     }
 
-    // dp를 픽셀로 변환하는 확장 함수
+    private fun addDataToJson(context: Context, newData: JSONObject) {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+
+        if (!file.exists()) {
+            // assets 폴더에서 파일을 내부 저장소로 복사 (초기 실행 시)
+            context.assets.open(jsonFileName).use { inputStream ->
+                file.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+        }
+
+        val jsonArray = JSONArray(file.readText())
+        jsonArray.put(newData)
+
+        saveJsonToInternalStorage(context, jsonArray, jsonFileName)
+    }
+
+    private fun saveJsonToInternalStorage(context: Context, jsonData: JSONArray, fileName: String) {
+        File(context.filesDir, fileName).writeText(jsonData.toString())
+    }
+
+    private fun createJsonData(title: String, detail: String): JSONObject {
+        val jsonObject = JSONObject()
+        jsonObject.put("title", title)
+        jsonObject.put("detail", detail)
+        return jsonObject
+    }
+
     private fun Int.dpToPixels(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
-
-    // ... createJsonData와 saveJsonToFile 함수 ...
 }
