@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondary_card_highlight"
-        android:text="사진 추가"
+        android:text="연락처 선택"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="20dp"
@@ -28,35 +28,21 @@
         android:visibility="gone"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-<!--    <Button-->
-<!--        android:id="@+id/galleryButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="갤러리에서 선택"-->
-<!--        android:layout_margin="8dp"/>-->
+    <Spinner
+        android:id="@+id/contactSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        android:padding="8dp"/>
 
-<!--    <Button-->
+<!--    <com.google.android.material.button.MaterialButton-->
 <!--        android:id="@+id/cameraButton"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:text="카메라로 촬영"-->
-<!--        android:layout_margin="8dp" />-->
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/galleryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="갤러리에서 선택"
-        android:backgroundTint="@color/primary_card_highlight"
-        android:layout_margin="8dp"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/cameraButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="카메라로 촬영"
-        android:backgroundTint="@color/primary_card_highlight"
-        android:layout_margin="8dp"/>
+<!--        android:backgroundTint="@color/primary_card_highlight"-->
+<!--        android:layout_margin="8dp"/>-->
 
     <LinearLayout
         android:padding="8dp"
