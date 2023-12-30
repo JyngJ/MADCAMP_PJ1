@@ -1,6 +1,8 @@
 package com.example.tab_pj
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,18 +11,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
+import android.util.DisplayMetrics
 import android.widget.ImageView
 import android.widget.PopupMenu
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import android.view.MenuInflater
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
-//    var titles = arrayOf("John Doe", "2", "정산디", "4", "5", "6", "7", "8", "9", "10" )
-//    var details = arrayOf("01-234-5678", "2", "010-7732-7252", "4", "5", "6", "7", "8", "9", "10" )
     var dataList = mutableListOf<DataItem>()
     data class DataItem(val title: String, val detail: String)
 
@@ -72,6 +77,10 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
                     removeCard(position, view.context)
                     true
                 }
+                R.id.action_modify -> {
+                    showEditDialog(view.context, position)
+                    true
+                }
                 else -> false
             }
         }
@@ -92,7 +101,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
-    private fun updateJsonFile(context: Context) {
+    fun updateJsonFile(context: Context) {
         val jsonFileName = "Num.json"
         val file = File(context.filesDir, jsonFileName)
 
@@ -114,6 +123,62 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         context.openFileOutput(jsonFileName, Context.MODE_PRIVATE).use { outputStream ->
             outputStream.write(jsonArray.toString().toByteArray())
         }
+
+        updateRecyclerView(context)
+
+    }
+
+    private fun updateRecyclerView(context: Context) {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+
+        if (file.exists()) {
+            val jsonString = file.readText()
+            val gson = Gson()
+            val listType = object : TypeToken<List<DataItem>>() {}.type
+            dataList = gson.fromJson(jsonString, listType)
+
+            notifyDataSetChanged()
+        }
+    }
+
+    private fun showEditDialog(context: Context, position: Int) {
+        val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
+        dialog.setContentView(R.layout.popup_number_modify)
+
+        val metrics = DisplayMetrics()
+        (context as Activity).windowManager.defaultDisplay.getMetrics(metrics)
+        val width = metrics.widthPixels - (8 * 4)
+        val popupWidth = (width / 4) * 3 + 16.dpToPixels(context)
+
+        dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
+
+        val firstTextField = dialog.findViewById<EditText>(R.id.editTextName)
+        val secondTextField = dialog.findViewById<EditText>(R.id.editTextNumber)
+        val saveButton = dialog.findViewById<Button>(R.id.saveButton)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+
+        saveButton.setOnClickListener {
+            // 저장 버튼 클릭 시 로직 구현
+            val firstText = firstTextField.text.toString()
+            val secondText = secondTextField.text.toString()
+
+            // 수정된 데이터로 dataList 업데이트
+            if (position in dataList.indices) {
+                dataList[position] = DataItem(firstText, secondText)
+                notifyDataSetChanged() // 리사이클러뷰 갱신
+
+                updateJsonFile(context) // JSON 파일 업데이트
+            }
+            dialog.dismiss()
+        }
+
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 }
+
