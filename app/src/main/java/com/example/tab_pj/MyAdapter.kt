@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
-    var titles = arrayOf("2023-12-29 20:01", "2", "3", "4", "5", "6", "7", "8", "9", "10" )
-//    var details = arrayOf("Item one", "Item two", "Item three", "Item four", "Itme five")
+    var titles = arrayOf("고영희", "강아디", "3", "4", "5", "6", "7", "8", "9", "10")
+    var details = arrayOf("2023-12-29 20:01", "2023-12-30 18:45", "3", "4", "5", "6", "7", "8", "9", "10")
 
     var images = intArrayOf(
         R.drawable.image1,
@@ -28,7 +28,7 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView = itemView.findViewById(R.id.item_image)
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
-//        var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
+        var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
@@ -41,7 +41,7 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemTitle.text = titles[position]
         holder.itemImage.setImageResource(images[position])
-//        holder.itemDetail.text = details[position]
+        holder.itemDetail.text = details[position]
     }
 
     override fun getItemCount(): Int {

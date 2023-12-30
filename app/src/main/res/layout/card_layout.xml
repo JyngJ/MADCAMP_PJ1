@@ -33,21 +33,20 @@
             android:layout_below="@+id/item_image"
             android:layout_alignLeft="@id/item_image"
             android:layout_alignRight="@id/item_image"
-
             android:gravity="center"
-
             android:textColor="@color/primary_card_highlight"
-
             android:textSize="16dp" />
 
-        <!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/item_detail"-->
-<!--            android:layout_toEndOf="@+id/item_image"-->
-<!--            android:layout_toRightOf="@+id/item_image"-->
-<!--            android:layout_below="@+id/item_title">-->
-<!--        </TextView>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_detail"
+            android:layout_below="@+id/item_title"
+            android:layout_alignLeft="@id/item_title"
+            android:layout_alignRight="@id/item_title"
+            android:gravity="center"
+            android:textColor="@color/primary_card_highlight"
+            android:textSize="12dp"/>
 
     </RelativeLayout>
 

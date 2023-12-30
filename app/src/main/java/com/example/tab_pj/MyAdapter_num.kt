@@ -25,7 +25,6 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
     data class DataItem(val title: String, val detail: String)
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
         var cancelButton: ImageView = itemView.findViewById(R.id.cancel_button)
