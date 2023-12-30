@@ -3,14 +3,18 @@ package com.example.tab_pj
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import android.content.Context
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
-    var titles = arrayOf("고영희", "퐁듀", "아르", "봉숙이", "복만이", "6", "7", "8", "9", "10" )
-    var details = arrayOf("01-234-5678", "2", "010-7732-7252", "4", "5", "6", "7", "8", "9", "10" )
+//    var titles = arrayOf("John Doe", "2", "정산디", "4", "5", "6", "7", "8", "9", "10" )
+//    var details = arrayOf("01-234-5678", "2", "010-7732-7252", "4", "5", "6", "7", "8", "9", "10" )
+    private var dataList = mutableListOf<DataItem>()
+    data class DataItem(val title: String, val detail: String)
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
@@ -23,12 +27,25 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         return MyViewHolder(v)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemTitle.text = titles[position]
-        holder.itemDetail.text = details[position]
+        holder.itemTitle.text = dataList[position].title
+        holder.itemDetail.text = dataList[position].detail
     }
 
     override fun getItemCount(): Int {
-        return titles.size
+        return dataList.size
     }
+
+    fun setDataFromJson(context: Context, jsonFileName: String) {
+        val jsonString: String = context.assets.open(jsonFileName)
+            .bufferedReader()
+            .use { it.readText() }
+
+        val gson = Gson()
+        val listType = object : TypeToken<List<DataItem>>() {}.type
+        dataList = gson.fromJson(jsonString, listType)
+
+        notifyDataSetChanged()
+    }
+
 
 }

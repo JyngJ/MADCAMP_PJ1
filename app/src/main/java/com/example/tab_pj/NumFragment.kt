@@ -20,6 +20,7 @@ class NumFragment : Fragment () {
         val layoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = layoutManager
         val adapter = MyAdapter_num()
+        adapter.setDataFromJson(requireContext(), "Num.json")
         recyclerView.adapter = adapter
 
         return view

@@ -14,14 +14,14 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     var images = intArrayOf(
         R.drawable.image1,
-        R.drawable.ic_launcher_background,
         R.drawable.ic_launcher_foreground,
         R.drawable.ic_launcher_foreground,
         R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_background,
         R.drawable.ic_launcher_foreground,
         R.drawable.ic_launcher_foreground,
-        R.drawable.ic_launcher_background,
+        R.drawable.ic_launcher_foreground,
+        R.drawable.ic_launcher_foreground,
+        R.drawable.ic_launcher_foreground,
         R.drawable.ic_launcher_foreground
     )
 
