@@ -82,6 +82,7 @@ class NumFragment : Fragment() {
             val newJsonData = createJsonData(firstText, secondText)
             addDataToJson(requireContext(), newJsonData)
 
+            adapter.updateJsonFile(requireContext())
             dialog.dismiss()
         }
 
@@ -93,7 +94,7 @@ class NumFragment : Fragment() {
         dialog.show()
     }
 
-    private fun addDataToJson(context: Context, newData: JSONObject) {
+    fun addDataToJson(context: Context, newData: JSONObject) {
         val jsonFileName = "Num.json"
         val file = File(context.filesDir, jsonFileName)
 
@@ -111,7 +112,7 @@ class NumFragment : Fragment() {
 
         saveJsonToInternalStorage(context, jsonArray, jsonFileName)
     }
-    private fun saveJsonToInternalStorage(context: Context, jsonData: JSONArray, fileName: String) {
+    fun saveJsonToInternalStorage(context: Context, jsonData: JSONArray, fileName: String) {
         context.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
             outputStream.write(jsonData.toString().toByteArray())
         }
@@ -120,7 +121,7 @@ class NumFragment : Fragment() {
         updateRecyclerView(context, fileName)
     }
 
-    private fun updateRecyclerView(context: Context, jsonFileName: String) {
+    fun updateRecyclerView(context: Context, jsonFileName: String) {
         val jsonString = File(context.filesDir, jsonFileName).readText()
         val listType = object : TypeToken<List<MyAdapter_num.DataItem>>() {}.type
         val newDataList = Gson().fromJson<List<MyAdapter_num.DataItem>>(jsonString, listType).toMutableList()
@@ -129,7 +130,7 @@ class NumFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 }
-    private fun copyAssetFileToInternalStorage(context: Context, filename: String) {
+    fun copyAssetFileToInternalStorage(context: Context, filename: String) {
         val file = File(context.filesDir, filename)
         if (!file.exists()) {
             context.assets.open(filename).use { inputStream ->
@@ -140,14 +141,14 @@ class NumFragment : Fragment() {
         }
     }
 
-    private fun createJsonData(title: String, detail: String): JSONObject {
+    fun createJsonData(title: String, detail: String): JSONObject {
         val jsonObject = JSONObject()
         jsonObject.put("title", title)
         jsonObject.put("detail", detail)
         return jsonObject
     }
 
-    private fun Int.dpToPixels(context: Context): Int {
+    fun Int.dpToPixels(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
 
