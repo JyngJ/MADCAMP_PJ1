@@ -32,13 +32,20 @@ class NumFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_num, container, false)
 
+
+
         recyclerView = view.findViewById(R.id.recyclerview_num)
         val layoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = layoutManager
 
         adapter = MyAdapter_num()
+        // 내부 저장소에서 파일 읽기
         adapter.setDataFromJson(requireContext(), "Num.json")
         recyclerView.adapter = adapter
+
+        // assets 폴더에서 파일을 내부 저장소로 복사
+        copyAssetFileToInternalStorage(requireContext(), "Num.json")
+        adapter.setDataFromJson(requireContext(), "Num.json")
 
         val fab = view.findViewById<FloatingActionButton>(R.id.fabNumber)
         fab.setOnClickListener {
@@ -117,6 +124,16 @@ class NumFragment : Fragment() {
         adapter.notifyDataSetChanged()
     }
 }
+    private fun copyAssetFileToInternalStorage(context: Context, filename: String) {
+        val file = File(context.filesDir, filename)
+        if (!file.exists()) {
+            context.assets.open(filename).use { inputStream ->
+                file.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+        }
+    }
 
     private fun createJsonData(title: String, detail: String): JSONObject {
         val jsonObject = JSONObject()

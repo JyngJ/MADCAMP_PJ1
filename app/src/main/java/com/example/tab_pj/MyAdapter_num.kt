@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
+import java.io.File
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
@@ -37,16 +38,15 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
     }
 
     fun setDataFromJson(context: Context, jsonFileName: String) {
-        val jsonString: String = context.assets.open(jsonFileName)
-            .bufferedReader()
-            .use { it.readText() }
+        val file = File(context.filesDir, jsonFileName)
+        if (file.exists()) {
+            val jsonString = file.readText()
 
-        val gson = Gson()
-        val listType = object : TypeToken<List<DataItem>>() {}.type
-        dataList = gson.fromJson(jsonString, listType)
+            val gson = Gson()
+            val listType = object : TypeToken<List<DataItem>>() {}.type
+            dataList = gson.fromJson(jsonString, listType)
 
-        notifyDataSetChanged()
+            notifyDataSetChanged()
+        }
     }
-
-
 }
