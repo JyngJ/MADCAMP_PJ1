@@ -53,7 +53,6 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         val file = File(context.filesDir, jsonFileName)
         if (file.exists()) {
             val jsonString = file.readText()
-
             val gson = Gson()
             val listType = object : TypeToken<List<DataItem>>() {}.type
             dataList = gson.fromJson(jsonString, listType)

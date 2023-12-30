@@ -68,8 +68,10 @@ class NumFragment : Fragment() {
 
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
 
-        val firstTextField = dialog.findViewById<EditText>(R.id.namefield)
-        val secondTextField = dialog.findViewById<EditText>(R.id.numberfield)
+        val firstTextField = dialog.findViewById<EditText>(R.id.editTextName)
+        val secondTextField = dialog.findViewById<EditText>(R.id.editTextNumber)
+
+
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 

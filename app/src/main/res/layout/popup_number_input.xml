@@ -7,17 +7,39 @@
     android:padding="16dp"
     android:layout_gravity="center">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        
         android:id="@+id/namefield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="placeholder_1" />
+        android:hint="@string/placeholder_name"
+        app:startIconDrawable="@drawable/person"
+        app:helperTextEnabled="true">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
         android:id="@+id/numberfield"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="placeholder_2" />
+        android:hint="@string/placeholder_number"
+        app:startIconDrawable="@drawable/phone"
+        app:helperTextEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
