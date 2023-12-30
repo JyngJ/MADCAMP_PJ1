@@ -18,17 +18,22 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 
+
 class NumFragment : Fragment() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: MyAdapter_num
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_num, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_num)
+        recyclerView = view.findViewById(R.id.recyclerview_num)
         val layoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = layoutManager
-        val adapter = MyAdapter_num()
+
+        adapter = MyAdapter_num()
         adapter.setDataFromJson(requireContext(), "Num.json")
         recyclerView.adapter = adapter
 
@@ -91,10 +96,20 @@ class NumFragment : Fragment() {
 
         saveJsonToInternalStorage(context, jsonArray, jsonFileName)
     }
-
     private fun saveJsonToInternalStorage(context: Context, jsonData: JSONArray, fileName: String) {
-        File(context.filesDir, fileName).writeText(jsonData.toString())
+        context.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
+            outputStream.write(jsonData.toString().toByteArray())
+        }
+
+        // 데이터 저장 후 RecyclerView 업데이트
+        updateRecyclerView(context, fileName)
     }
+
+    private fun updateRecyclerView(context: Context, jsonFileName: String) {
+        adapter.setDataFromJson(context, jsonFileName)
+        adapter.notifyDataSetChanged()
+    }
+}
 
     private fun createJsonData(title: String, detail: String): JSONObject {
         val jsonObject = JSONObject()
@@ -106,4 +121,4 @@ class NumFragment : Fragment() {
     private fun Int.dpToPixels(context: Context): Int {
         return (this * context.resources.displayMetrics.density).toInt()
     }
-}
+
