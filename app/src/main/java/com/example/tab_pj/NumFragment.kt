@@ -3,19 +3,17 @@ package com.example.tab_pj
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.content.ContentProviderCompat.requireContext
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import org.json.JSONObject
-
-
 
 class NumFragment : Fragment() {
     override fun onCreateView(
@@ -38,26 +36,37 @@ class NumFragment : Fragment() {
 
         return view
     }
-
     private fun showDialog() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.popup_number_input)
 
+        val metrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
+        val width = metrics.widthPixels - (8 * 4)  // 폰 가로 길이에서 마진 제외
+        val popupWidth = (width / 4) * 3 + 16.dpToPixels(requireContext()) // 팝업 너비 계산
+
+        dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
+
         val firstTextField = dialog.findViewById<EditText>(R.id.namefield)
         val secondTextField = dialog.findViewById<EditText>(R.id.numberfield)
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 
         saveButton.setOnClickListener {
-            val firstText = firstTextField.text.toString()
-            val secondText = secondTextField.text.toString()
-//
-//            val jsonData = createJsonData(firstText, secondText)
-//            saveJsonToFile(jsonData, "myData.json")
+            // JSON 저장 로직 (현재 주석 처리)
+            dialog.dismiss()
+        }
 
-            dialog.dismiss() // 다이얼로그 닫기
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
         }
 
         dialog.show()
+    }
+
+    // dp를 픽셀로 변환하는 확장 함수
+    private fun Int.dpToPixels(context: Context): Int {
+        return (this * context.resources.displayMetrics.density).toInt()
     }
 
     // ... createJsonData와 saveJsonToFile 함수 ...
