@@ -1,5 +1,6 @@
 package com.example.tab_pj
 
+import PhotoFragment
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayout
