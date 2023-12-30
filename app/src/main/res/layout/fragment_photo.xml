@@ -13,15 +13,23 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:contentDescription="@string/add_photo"
-        android:layout_margin="24dp"
+        android:layout_margin="12dp"
+        android:text="@string/add_photo"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/secondary_card_highlight"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRadius"
-        android:src="@drawable/plus"/>
+        app:icon="@drawable/plus"
+        app:iconTint="@color/white"
+        app:iconSize="16dp"
+        />
 <!--        android:backgroundTint="@color/primary_card_highlight"-->
 
 

@@ -7,7 +7,7 @@
     <string name="placeholder_number">전화번호</string>
     <string name="page_title">Page_Title</string>
     <string name="add_number">연락처 추가</string>
-    <string name="add_photo">Add photo and pair that with name</string>
+    <string name="add_photo">사진 추가</string>
     <string name="cancel_button_description">Delete card with this btn</string>
 </resources>
 

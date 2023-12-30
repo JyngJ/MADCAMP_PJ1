@@ -21,13 +21,14 @@
         android:contentDescription="@string/add_number"
         android:layout_margin="12dp"
         android:text="@string/add_number"
-        android:textColor="@color/secondary_card_highlight"
+        android:textColor="@color/white"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:backgroundTint="@color/secondary_card"
+        android:backgroundTint="@color/secondary_card_highlight"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerRadius"
         app:icon="@drawable/plus"
-        app:iconTint="@color/secondary_card_highlight"
+        app:iconSize="16dp"
+        app:iconTint="@color/white"
         />
 <!--    android:backgroundTint="@color/primary_card_highlight"-->
 

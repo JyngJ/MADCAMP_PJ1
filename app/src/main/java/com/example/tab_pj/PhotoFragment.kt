@@ -22,6 +22,7 @@ import android.content.Intent
 import android.provider.MediaStore
 import android.widget.ImageView
 import android.net.Uri
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class PhotoFragment : Fragment() {
 
@@ -40,7 +41,7 @@ class PhotoFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = MyAdapter()
 
-        val fabPhoto = view.findViewById<FloatingActionButton>(R.id.fabPhoto)
+        val fabPhoto = view.findViewById<ExtendedFloatingActionButton>(R.id.fabPhoto)
         fabPhoto.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -67,7 +68,7 @@ class PhotoFragment : Fragment() {
         popupView = layoutInflater.inflate(R.layout.popup_photo_input, null)
 
         // 다이얼로그 생성
-        val dialog = Dialog(requireContext())
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(popupView)
 
         // 팝업 내부의 버튼 처리

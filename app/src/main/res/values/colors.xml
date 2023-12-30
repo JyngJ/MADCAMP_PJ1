@@ -5,6 +5,8 @@
     <color name="primary_bar">#5B4997</color>
     <color name="primary_card">#D0BCFF</color>
     <color name="primary_card_highlight">#381E72</color>
+    <color name="primary_card_weak">#FFFBFE</color>
     <color name="secondary_card">#CCC2DC</color>
     <color name="secondary_card_highlight">#332D41</color>
+
 </resources>
