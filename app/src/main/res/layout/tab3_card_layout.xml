@@ -8,10 +8,20 @@
     android:layout_margin="8dp"
     style="?attr/materialCardViewElevatedStyle">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <LinearLayout        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id = "@+id/item_title"
+            android:text="@string/dummy_short"
+            android:textStyle="bold"
+            android:background="@color/secondary_card_highlight"
+            android:textColor="@android:color/white"
+            android:padding="16dp"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            />
 
         <!-- Media -->
         <ImageView
@@ -23,26 +33,19 @@
             android:contentDescription="@string/img_description"
             />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <LinearLayout            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
             <!-- Title, secondary and supporting text -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id = "@+id/item_title"
-                android:text="@string/dummy_short"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id = "@+id/item_detail"
                 android:layout_marginTop="8dp"
-                android:text="@string/dummy_mid"
+                android:text="@string/dummy_long"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary"
                 />
@@ -50,7 +53,5 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
