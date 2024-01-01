@@ -40,6 +40,12 @@ android {
 }
 
 dependencies {
+    // ViewModel과 LiveData에 대한 의존성 추가
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    // ViewModel을 사용하기 위한 액티비티 의존성 추가
+    implementation ("androidx.activity:activity-ktx:1.2.3")
+
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

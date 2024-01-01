@@ -24,11 +24,14 @@ import android.provider.MediaStore
 import android.net.Uri
 import android.widget.Spinner
 import android.widget.ArrayAdapter
+import androidx.lifecycle.ViewModelProvider
+import com.example.tab_pj.SharedViewModel
+import androidx.lifecycle.Observer
 
 class PhotoFragment : Fragment() {
 
     private val PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123
-    private val GALLERY_REQUEST_CODE = 1001
+    private val GALLERY_REQUEST_CODE = 10
     private lateinit var popupView: View
     private var selectedImageUri: Uri? = null // 선택한 이미지의 URI를 저장하는 변수
 
@@ -78,7 +81,6 @@ class PhotoFragment : Fragment() {
         val cameraButton = popupView.findViewById<Button>(R.id.cameraButton)
         val saveButton = popupView.findViewById<Button>(R.id.saveButton)
         val cancelButton = popupView.findViewById<Button>(R.id.cancelButton)
-//        val imageView = popupView.findViewById<ImageView>(R.id.imageView)
 
         // 갤러리로 이동 버튼 클릭 시 동작
         galleryButton.setOnClickListener {
@@ -89,6 +91,8 @@ class PhotoFragment : Fragment() {
             galleryIntent.type = "image/*"
             // 이미지 선택 결과를 처리할 액티비티를 지정하여 실행
             startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+
+            dialog.dismiss()
         }
 
         // 연락처로 이동 버튼 클릭 시 동작
@@ -99,7 +103,6 @@ class PhotoFragment : Fragment() {
         // 저장 버튼 클릭 시 동작
         saveButton.setOnClickListener {
             dialog.dismiss()
-            showSavePopup()
         }
 
         // 취소 버튼 클릭 시 동작
@@ -134,16 +137,20 @@ class PhotoFragment : Fragment() {
     private fun showSavePopup() {
         // 팝업 레이아웃을 인플레이트
         val popupViewSave = layoutInflater.inflate(R.layout.popup_photo_save_input, null)
-
-        val contactList = listOf("연락처1", "연락처2", "연락처3", "연락처4")
         val contactSpinner = popupViewSave.findViewById<Spinner>(R.id.contactSpinner)
         val saveButton = popupViewSave.findViewById<Button>(R.id.saveButton)
         val cancelButton = popupViewSave.findViewById<Button>(R.id.cancelButton)
         val imageView = popupViewSave.findViewById<ImageView>(R.id.imageView)
 
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, contactList)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        contactSpinner.adapter = adapter
+        // Spinner에 데이터 설정을 위한 ViewModel 사용
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel.getNumData().observe(viewLifecycleOwner, Observer { dataItems ->
+            // 'dataItems'를 사용하여 Spinner의 데이터를 설정
+            val contactList = dataItems.map { it.title }
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, contactList)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            contactSpinner.adapter = adapter
+        })
 
         if (selectedImageUri != null) {
             imageView.setImageURI(selectedImageUri)
@@ -164,6 +171,14 @@ class PhotoFragment : Fragment() {
             // 팝업을 닫는다.
             dialog.dismiss()
         }
+
+        //test
+        // 다이얼로그 크기 설정 및 보이기
+        val displayMetrics = DisplayMetrics()
+        requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
+        val dialogWidth = (displayMetrics.widthPixels * 0.8).toInt()
+        dialog.window?.setLayout(dialogWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
+        //여기까지
 
         // 다이얼로그 보이기
         dialog.show()

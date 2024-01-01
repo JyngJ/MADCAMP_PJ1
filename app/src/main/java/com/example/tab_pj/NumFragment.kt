@@ -22,6 +22,11 @@ import java.io.File
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.tab_pj.MyAdapter_num
+import androidx.lifecycle.ViewModelProvider
 
 
 class NumFragment : Fragment() {
@@ -48,8 +53,9 @@ class NumFragment : Fragment() {
         // assets 폴더에서 파일을 내부 저장소로 복사
         copyAssetFileToInternalStorage(requireContext(), "Num.json")
 
-        // 내부 저장소에서 파일 읽기
-        adapter.setDataFromJson(requireContext(), "Num.json")
+        // ViewModel 초기화 및 데이터 로드. 이거 test임
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        loadDataIntoViewModel(viewModel, requireContext())
 
         val fab = view.findViewById<ExtendedFloatingActionButton>(R.id.fabNumber)
         fab.setOnClickListener {
@@ -57,6 +63,18 @@ class NumFragment : Fragment() {
         }
 
         return view
+    }
+
+    //PhotoFragment 시작 시 ViewModel에 데이터 존재하도록, SharedViewModel에 초기 데이터 로드하는 메서드임
+    private fun loadDataIntoViewModel(viewModel: SharedViewModel, context: Context) {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+        if (file.exists()) {
+            val jsonString = file.readText()
+            val listType = object : TypeToken<List<MyAdapter_num.DataItem>>() {}.type
+            val dataItems = Gson().fromJson<List<MyAdapter_num.DataItem>>(jsonString, listType)
+            viewModel.setNumData(dataItems)
+        }
     }
 
     private fun showDialog() {
@@ -112,6 +130,7 @@ class NumFragment : Fragment() {
 
         saveJsonToInternalStorage(context, jsonArray, jsonFileName)
     }
+
     fun saveJsonToInternalStorage(context: Context, jsonData: JSONArray, fileName: String) {
         context.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
             outputStream.write(jsonData.toString().toByteArray())
@@ -128,6 +147,11 @@ class NumFragment : Fragment() {
 
         adapter.dataList = newDataList
         adapter.notifyDataSetChanged()
+
+        //test
+        // SharedViewModel에 데이터 저장
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel.setNumData(newDataList)
     }
 }
     fun copyAssetFileToInternalStorage(context: Context, filename: String) {
@@ -152,3 +176,14 @@ class NumFragment : Fragment() {
         return (this * context.resources.displayMetrics.density).toInt()
     }
 
+class SharedViewModel : ViewModel() {
+    private val numData = MutableLiveData<List<MyAdapter_num.DataItem>>()
+
+    fun setNumData(data: List<MyAdapter_num.DataItem>) {
+        numData.value = data
+    }
+
+    fun getNumData(): LiveData<List<MyAdapter_num.DataItem>> {
+        return numData
+    }
+}
