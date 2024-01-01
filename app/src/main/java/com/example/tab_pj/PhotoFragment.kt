@@ -85,8 +85,8 @@ class PhotoFragment : Fragment() {
 
         // 팝업 내부의 버튼 처리
         val galleryButton = popupView.findViewById<Button>(R.id.galleryButton)
-        val cameraButton = popupView.findViewById<Button>(R.id.cameraButton)
-        val saveButton = popupView.findViewById<Button>(R.id.saveButton)
+//        val cameraButton = popupView.findViewById<Button>(R.id.cameraButton)
+//        val saveButton = popupView.findViewById<Button>(R.id.saveButton)
         val cancelButton = popupView.findViewById<Button>(R.id.cancelButton)
 
         // 갤러리로 이동 버튼 클릭 시 동작
@@ -102,15 +102,15 @@ class PhotoFragment : Fragment() {
             dialog.dismiss()
         }
 
-        // 연락처로 이동 버튼 클릭 시 동작
-        cameraButton.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        // 저장 버튼 클릭 시 동작
-        saveButton.setOnClickListener {
-            dialog.dismiss()
-        }
+//        // 연락처로 이동 버튼 클릭 시 동작
+//        cameraButton.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//
+//        // 저장 버튼 클릭 시 동작
+//        saveButton.setOnClickListener {
+//            dialog.dismiss()
+//        }
 
         // 취소 버튼 클릭 시 동작
         cancelButton.setOnClickListener {
