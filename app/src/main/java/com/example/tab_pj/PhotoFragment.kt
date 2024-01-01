@@ -52,6 +52,9 @@ class PhotoFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.adapter = MyAdapter(photoItems)
 
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel.loadNumData(requireContext()) // JSON 데이터 로드
+
         val fabPhoto = view.findViewById<ExtendedFloatingActionButton>(R.id.fabPhoto)
         fabPhoto.setOnClickListener {
             if (ContextCompat.checkSelfPermission(

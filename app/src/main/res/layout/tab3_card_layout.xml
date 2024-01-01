@@ -50,7 +50,6 @@
                 android:textColor="?android:attr/textColorSecondary"
                 />
 
-
         </LinearLayout>
 
     </LinearLayout>
