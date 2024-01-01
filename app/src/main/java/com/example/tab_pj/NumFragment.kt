@@ -209,6 +209,7 @@ class SharedViewModel : ViewModel() {
 
     fun isValidPhoneNumber(phoneNumber: String): Boolean {
         // 정규표현식을 사용하여 전화번호 형식을 검사
-        val pattern = Regex("^\\d{3}-\\d{4}-\\d{4}$")
-        return pattern.matches(phoneNumber)
+//        val pattern = Regex("^\\d{3}-\\d{4}-\\d{4}$")
+//        return pattern.matches(phoneNumber)                                   <<<<< 테스트용으로 constraint 해제
+        return true
     }

@@ -60,13 +60,12 @@
             android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType ="phone"
+
             android:digits="0123456789-"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-
+<!--android:inputType ="phone" constraint 추가하기-->
 
     <LinearLayout
         android:padding="8dp"

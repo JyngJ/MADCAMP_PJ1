@@ -80,7 +80,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
                     true
                 }
                 R.id.action_modify -> {
-                    showEditDialog(view.context, position)
+                    showEditDialog(view.context, position, view.height)
                     true
                 }
                 else -> false
@@ -144,7 +144,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         }
     }
 
-    private fun showEditDialog(context: Context, position: Int) {
+    private fun showEditDialog(context: Context, position: Int, yOffset: Int) {
         val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.popup_number_modify)
 
@@ -154,6 +154,11 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         val popupWidth = (width / 4) * 3 + 16.dpToPixels(context)
 
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
+
+        //팝업 위치 조정
+        val windowParams = dialog.window?.attributes
+        windowParams?.y = yOffset
+        dialog.window?.attributes = windowParams
 
         val firstTextField = dialog.findViewById<EditText>(R.id.editTextName)
         val secondTextField = dialog.findViewById<EditText>(R.id.editTextNumber)
