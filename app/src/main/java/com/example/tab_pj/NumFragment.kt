@@ -53,7 +53,7 @@ class NumFragment : Fragment() {
         // assets 폴더에서 파일을 내부 저장소로 복사
         copyAssetFileToInternalStorage(requireContext(), "Num.json")
 
-        // ViewModel 초기화 및 데이터 로드. 이거 test임
+        // ViewModel 초기화 및 데이터 로드
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         loadDataIntoViewModel(viewModel, requireContext())
 
@@ -168,7 +168,6 @@ class NumFragment : Fragment() {
         adapter.dataList = newDataList
         adapter.notifyDataSetChanged()
 
-        //test
         // SharedViewModel에 데이터 저장
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         viewModel.setNumData(newDataList)

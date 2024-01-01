@@ -172,13 +172,11 @@ class PhotoFragment : Fragment() {
             dialog.dismiss()
         }
 
-        //test
         // 다이얼로그 크기 설정 및 보이기
         val displayMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(displayMetrics)
         val dialogWidth = (displayMetrics.widthPixels * 0.8).toInt()
         dialog.window?.setLayout(dialogWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
-        //여기까지
 
         // 다이얼로그 보이기
         dialog.show()
