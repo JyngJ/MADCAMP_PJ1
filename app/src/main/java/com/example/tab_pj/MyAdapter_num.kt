@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
 import android.util.DisplayMetrics
+import android.view.Gravity
 import android.widget.ImageView
 import android.widget.PopupMenu
 import org.json.JSONArray
@@ -164,15 +165,38 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
             val firstText = firstTextField.text.toString()
             val secondText = secondTextField.text.toString()
 
+            // 데이터 유효성 검사
+            if (firstText.isEmpty()) {
+                // 이름이 비어있을 때 에러 메시지를 보여줄 수 있습니다.
+                firstTextField.error = "이름을 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else {
+                firstTextField.error = null // 에러 메시지 지우기
+            }
+
+            if (secondText.isEmpty()) {
+                // 전화번호 유효성 검사 실패 시 에러 메시지를 보여줄 수 있습니다.
+                secondTextField.error = "전화번호를 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else if (!isValidPhoneNumber(secondText)) {
+                secondTextField.error = "'000-0000-0000' 형식으로 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else {
+                secondTextField.error = null // 에러 메시지 지우기
+            }
+
             // 수정된 데이터로 dataList 업데이트
             if (position in dataList.indices) {
                 dataList[position] = DataItem(firstText, secondText)
                 notifyDataSetChanged() // 리사이클러뷰 갱신
 
                 updateJsonFile(context) // JSON 파일 업데이트
-                Toast.makeText(context, context.getString(R.string.modify_success), Toast.LENGTH_SHORT).show()
-
-            }
+                Toast.makeText(context, context.getString(R.string.modify_success), Toast.LENGTH_SHORT)
+                    .apply {
+                        setGravity(Gravity.CENTER, 0, -100)
+                        show()
+                    }
+                }
             dialog.dismiss()
         }
 

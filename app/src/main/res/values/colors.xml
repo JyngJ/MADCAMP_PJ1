@@ -8,5 +8,6 @@
     <color name="primary_card_weak">#FFFBFE</color>
     <color name="secondary_card">#CCC2DC</color>
     <color name="secondary_card_highlight">#332D41</color>
+    <color name="error_color">#B3261E</color>
 
 </resources>
