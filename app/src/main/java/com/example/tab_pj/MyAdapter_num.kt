@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.content.Context
 import android.util.DisplayMetrics
+import android.view.Gravity
 import android.widget.ImageView
 import android.widget.PopupMenu
 import org.json.JSONArray
@@ -190,9 +191,12 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
                 notifyDataSetChanged() // 리사이클러뷰 갱신
 
                 updateJsonFile(context) // JSON 파일 업데이트
-                Toast.makeText(context, context.getString(R.string.modify_success), Toast.LENGTH_SHORT).show()
-
-            }
+                Toast.makeText(context, context.getString(R.string.modify_success), Toast.LENGTH_SHORT)
+                    .apply {
+                        setGravity(Gravity.CENTER, 0, -100)
+                        show()
+                    }
+                }
             dialog.dismiss()
         }
 
