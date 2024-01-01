@@ -28,6 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/placeholder_name"
+
+        app:errorEnabled="true"
         app:startIconDrawable="@drawable/person"
         app:helperTextEnabled="true">
 
@@ -35,6 +37,8 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
+            android:digits="0123456789-"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -47,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/placeholder_number"
+
+        app:errorEnabled="true"
         app:startIconDrawable="@drawable/phone"
         app:helperTextEnabled="true">
 
@@ -54,9 +60,12 @@
             android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="phone"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <LinearLayout
         android:padding="8dp"

@@ -79,6 +79,26 @@ class NumFragment : Fragment() {
             val firstText = firstTextField.text.toString()
             val secondText = secondTextField.text.toString()
 
+            // 데이터 유효성 검사
+            if (firstText.isEmpty()) {
+                // 이름이 비어있을 때 에러 메시지를 보여줄 수 있습니다.
+                firstTextField.error = "이름을 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else {
+                firstTextField.error = null // 에러 메시지 지우기
+            }
+
+            if (secondText.isEmpty()) {
+                // 전화번호 유효성 검사 실패 시 에러 메시지를 보여줄 수 있습니다.
+                secondTextField.error = "전화번호를 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else if (!isValidPhoneNumber(secondText)) {
+                secondTextField.error = "'000-0000-0000' 형식으로 입력해 주세요"
+                return@setOnClickListener // 클릭 이벤트 종료
+            } else {
+                secondTextField.error = null // 에러 메시지 지우기
+            }
+
             val newJsonData = createJsonData(firstText, secondText)
             addDataToJson(requireContext(), newJsonData)
 
@@ -152,3 +172,8 @@ class NumFragment : Fragment() {
         return (this * context.resources.displayMetrics.density).toInt()
     }
 
+    fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        // 정규표현식을 사용하여 전화번호 형식을 검사
+        val pattern = Regex("^\\d{3}-\\d{4}-\\d{4}$")
+        return pattern.matches(phoneNumber)
+    }
