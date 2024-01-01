@@ -1,6 +1,6 @@
 [
-  {"title":  "John Doe", "detail": "010-1234-5678"},
+  {"title":  "아름냥이", "detail": "010-1234-5678", "memo": "NyanNyanNyanNyanNyanNyanNyan"},
   {"title":  "강아디", "detail": "010-1111-2222"},
-  {"title":  "정산디", "detail": "010-3333-4444"},
+  {"title":  "정산디", "detail": "010-3333-4444", "memo": "Wanna go home plz let me leave here"},
   {"title":  "고양희", "detail": "010-5555-6666"}
 ]

@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,16 @@ class NumFragment : Fragment() {
         adapter = MyAdapter_num()
         // 내부 저장소에서 파일 읽기
         adapter.setDataFromJson(requireContext(), "Num.json")
+
         recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+
+        val jsonFileName = "Num.json"
+        val file = File(requireContext().filesDir, jsonFileName)
+        if (file.exists()) {
+            val jsonString = file.readText()
+            Log.d("NumFragment", "JSON File Content: $jsonString")
+        }
 
         // assets 폴더에서 파일을 내부 저장소로 복사
         copyAssetFileToInternalStorage(requireContext(), "Num.json")
@@ -61,6 +71,7 @@ class NumFragment : Fragment() {
         fab.setOnClickListener {
             showDialog()
         }
+
 
         return view
     }

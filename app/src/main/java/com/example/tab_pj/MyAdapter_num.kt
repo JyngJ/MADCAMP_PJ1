@@ -40,6 +40,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
         val v: View = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.num_layout, viewGroup, false)
+
         return MyViewHolder(v)
     }
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
