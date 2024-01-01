@@ -47,7 +47,7 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         holder.itemDetail.text = dataList[position].detail
         holder.cancelButton.setOnClickListener {
             // 해당 카드를 삭제하는 로직을 구현
-            showPopupMenu(holder.itemView, position)
+            showPopupMenu(holder.cancelButton, position)
         }
     }
 
@@ -68,19 +68,19 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
     }
 
 
-    private fun showPopupMenu(view: View, position: Int) {
-        val popupMenu = PopupMenu(view.context, view)
+    private fun showPopupMenu(cancelButton: ImageView, position: Int) {
+        val popupMenu = PopupMenu(cancelButton.context, cancelButton)
         popupMenu.menuInflater.inflate(R.menu.popupmenu_deleteormodify, popupMenu.menu)
 
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_delete -> {
                     // 해당 카드를 삭제하는 로직을 구현하고, 현재 아이템의 위치(position)를 전달
-                    removeCard(position, view.context)
+                    removeCard(position, cancelButton.context)
                     true
                 }
                 R.id.action_modify -> {
-                    showEditDialog(view.context, position, view.height)
+                    showEditDialog(cancelButton.context, position, cancelButton.height + cancelButton.paddingTop)
                     true
                 }
                 else -> false
