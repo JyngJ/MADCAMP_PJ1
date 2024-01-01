@@ -1,4 +1,5 @@
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.app.Dialog
 import android.os.Bundle
@@ -27,6 +28,9 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.example.tab_pj.SharedViewModel
 import androidx.lifecycle.Observer
+import java.util.*
+import android.text.format.DateFormat
+import com.example.tab_pj.PhotoItem
 
 class PhotoFragment : Fragment() {
 
@@ -34,6 +38,9 @@ class PhotoFragment : Fragment() {
     private val GALLERY_REQUEST_CODE = 10
     private lateinit var popupView: View
     private var selectedImageUri: Uri? = null // 선택한 이미지의 URI를 저장하는 변수
+    private val photoItems = mutableListOf<PhotoItem>()
+    private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +48,9 @@ class PhotoFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_photo, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_main)
+        recyclerView = view.findViewById(R.id.recyclerview_main)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.adapter = MyAdapter()
+        recyclerView.adapter = MyAdapter(photoItems)
 
         val fabPhoto = view.findViewById<ExtendedFloatingActionButton>(R.id.fabPhoto)
         fabPhoto.setOnClickListener {
@@ -134,6 +141,7 @@ class PhotoFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun showSavePopup() {
         // 팝업 레이아웃을 인플레이트
         val popupViewSave = layoutInflater.inflate(R.layout.popup_photo_save_input, null)
@@ -163,6 +171,14 @@ class PhotoFragment : Fragment() {
 
         // 저장 버튼 클릭 시 동작
         saveButton.setOnClickListener {
+            val selectedItem = contactSpinner.selectedItem.toString()
+            val currentTime = getCurrentTime()
+            val newItem = PhotoItem(selectedImageUri, selectedItem, currentTime, R.drawable.ic_launcher_foreground)
+            photoItems.add(newItem)
+
+            // Notify the adapter that data has changed
+            recyclerView.adapter?.notifyDataSetChanged()
+
             dialog.dismiss()
         }
 
@@ -180,5 +196,10 @@ class PhotoFragment : Fragment() {
 
         // 다이얼로그 보이기
         dialog.show()
+    }
+
+    private fun getCurrentTime(): String {
+        val cal = Calendar.getInstance()
+        return DateFormat.format("yyyy-MM-dd HH:mm", cal).toString()
     }
 }

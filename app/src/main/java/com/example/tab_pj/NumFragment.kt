@@ -195,18 +195,6 @@ class NumFragment : Fragment() {
         return (this * context.resources.displayMetrics.density).toInt()
     }
 
-class SharedViewModel : ViewModel() {
-    private val numData = MutableLiveData<List<MyAdapter_num.DataItem>>()
-
-    fun setNumData(data: List<MyAdapter_num.DataItem>) {
-        numData.value = data
-    }
-
-    fun getNumData(): LiveData<List<MyAdapter_num.DataItem>> {
-        return numData
-    }
-}
-
     fun isValidPhoneNumber(phoneNumber: String): Boolean {
         // 정규표현식을 사용하여 전화번호 형식을 검사
 //        val pattern = Regex("^\\d{3}-\\d{4}-\\d{4}$")

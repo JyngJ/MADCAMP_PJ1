@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.github.bumptech.glide:glide:4.12.0") // Glide 라이브러리 버전은 최신 버전으로 업데이트 가능
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0") // Glide 어노테이션 프로세서
     // ViewModel과 LiveData에 대한 의존성 추가
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
