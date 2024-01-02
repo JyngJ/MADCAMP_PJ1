@@ -1,5 +1,6 @@
 package com.example.tab_pj
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,10 +39,10 @@ class MyAdapter(private val items: List<PhotoItem>) : RecyclerView.Adapter<MyAda
         val currentItem = items[position]
         holder.itemTitle.text = currentItem.title
         holder.itemDetail.text = currentItem.saveTime
-    if (currentItem.imageUri != null) {
+    if (currentItem.imageUriString != null) {
         // 이미지 URI가 있는 경우 Glide를 사용하여 이미지 로드
         Glide.with(holder.itemView)
-            .load(currentItem.imageUri)
+            .load(currentItem.imageUriString)
             .into(holder.itemImage)
     } else {
         // 이미지 URI가 없는 경우 이미지 리소스 ID 사용

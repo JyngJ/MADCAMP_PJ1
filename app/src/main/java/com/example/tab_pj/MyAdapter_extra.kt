@@ -156,7 +156,7 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         }
         override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
             val photoItem = photos[position]
-            Glide.with(context).load(photoItem.imageUri).into(holder.imageView)
+            Glide.with(context).load(photoItem.imageUriString).into(holder.imageView)
         }
 
         override fun getItemCount(): Int {

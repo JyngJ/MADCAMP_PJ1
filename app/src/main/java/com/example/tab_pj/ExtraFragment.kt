@@ -29,13 +29,11 @@ class ExtraFragment : Fragment () {
 
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        // Extract the current value from the LiveData object
         val currentPhotosMap = viewModel.getPhotosMap().value ?: emptyMap()
 
         adapter = MyAdapter_extra(updatedNames, currentPhotosMap, requireContext())
         recyclerView.adapter = adapter
 
-        // Observe the LiveData for changes
         viewModel.getPhotosMap().observe(viewLifecycleOwner, { photosMap ->
             adapter.updateData(photosMap)
         })
@@ -44,7 +42,6 @@ class ExtraFragment : Fragment () {
     }
     private fun updateNames(context: Context, array: ArrayList<String>): ArrayList<String> {
         // updatenamesArray 메서드의 로직
-        // ... 기존 코드 ...
         val jsonFileName = "Num.json"
         val file = File(context.filesDir, jsonFileName)
 
