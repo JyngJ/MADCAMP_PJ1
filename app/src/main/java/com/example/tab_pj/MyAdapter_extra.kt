@@ -90,12 +90,30 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         }
 
         holder.writeButton.setOnClickListener {
-            // 해당 카드를 삭제하는 로직을 구현
-            showDialog(position)
+            showDialog(position, "")
+        }
+
+        holder.modifyButton.setOnClickListener {
+            val memo = getMemo(position)
+            showDialog(position, memo)
         }
     }
 
-    private fun showDialog(position: Int) {
+    private fun getMemo(position: Int): String {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+        if (file.exists()) {
+            val jsonString = file.readText()
+            val jsonArray = JSONArray(jsonString)
+            if (position < jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(position)
+                return jsonObject.optString("memo", "")
+            }
+        }
+        return ""
+    }
+
+    private fun showDialog(position: Int, existingMemo: String) {
         val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.tab3_memo_input)
 
@@ -103,33 +121,32 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         (context as Activity).windowManager.defaultDisplay.getMetrics(metrics)
         val width = metrics.widthPixels - (8 * 4)
         val popupWidth = (width / 4) * 3 + 16.dpToPixels(context)
-
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
 
         val textInputLayout = dialog.findViewById<TextInputLayout>(R.id.filledTextField)
         val editText = textInputLayout.editText
+        editText?.setText(existingMemo) // 기존 메모 세팅
+
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 
         saveButton.setOnClickListener {
-            // 이 부분 수정
-            // 텍스트 필드에 입력받은 텍스트를
-            // 현재 카드에 해당되는 JSON 의 Key: memo 필드에 넣기.
             val inputText = editText?.text.toString()
             if (inputText.isNotEmpty()) {
                 updateJsonFileWithMemo(position, inputText)
             }
             dialog.dismiss()
-
         }
+
         cancelButton.setOnClickListener {
             dialog.dismiss()
         }
 
-
         dialog.show()
     }
 
+//1 팝업 크기 좀 키우기 (세로 )
+// 위에 나오는 텍스트 바꾸기
 
         override fun getItemCount(): Int {
         return names.size
