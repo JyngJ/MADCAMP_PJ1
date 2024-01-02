@@ -32,6 +32,8 @@ import androidx.lifecycle.Observer
 import java.util.*
 import android.text.format.DateFormat
 import com.example.tab_pj.PhotoItem
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class PhotoFragment : Fragment() {
 
@@ -39,15 +41,46 @@ class PhotoFragment : Fragment() {
     private val GALLERY_REQUEST_CODE = 10
     private lateinit var popupView: View
     private var selectedImageUri: Uri? = null // 선택한 이미지의 URI를 저장하는 변수
-    private val photoItems = mutableListOf<PhotoItem>()
+    private var photoItems = mutableListOf<PhotoItem>()
     private lateinit var recyclerView: RecyclerView
 
+    private fun savePhotoItems() {
+        val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref", Activity.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(photoItems)
+        editor.putString("photoItems", json)
+        editor.apply()
+    }
+
+    private fun loadPhotoItems() {
+        val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref", Activity.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("photoItems", null)
+        val type = object : TypeToken<MutableList<PhotoItem>>() {}.type
+        try {
+            if (json != null) {
+                val loadedItems: MutableList<PhotoItem> = gson.fromJson(json, type)
+                photoItems.clear()
+                photoItems.addAll(loadedItems)
+            }
+        } catch (e: Exception) {
+            // Log the error or handle it appropriately
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        savePhotoItems()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_photo, container, false)
+
+        loadPhotoItems()
 
         recyclerView = view.findViewById(R.id.recyclerview_main)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -166,13 +199,11 @@ class PhotoFragment : Fragment() {
         saveButton.setOnClickListener {
             val selectedItem = contactSpinner.selectedItem.toString()
             val currentTime = getCurrentTime()
-            val newItem = PhotoItem(selectedImageUri, selectedItem, currentTime, R.drawable.ic_launcher_foreground)
+            val newItem = PhotoItem(selectedImageUri.toString(), selectedItem, currentTime, R.drawable.ic_launcher_foreground)
 
-            // Update local list and RecyclerView
             photoItems.add(newItem)
             recyclerView.adapter?.notifyDataSetChanged()
 
-            // Update SharedViewModel
             val currentList = viewModel.getPhotosForTitle(selectedItem).value.orEmpty()
             viewModel.setPhotosForTitle(selectedItem, currentList + newItem)
 

@@ -166,7 +166,7 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         }
 
         override fun getItemCount(): Int {
-            return if (photos.isNotEmpty()) photos.size else 1 // 사진이 없는 경우 placeholder를 위한 1 반환
+            return photos.size
         }
 
         inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
