@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
@@ -7,9 +7,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
     android:layout_margin="8dp"
-    card_view:cardBackgroundColor="@color/primary_card_weak"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="2dp"
+    style="?attr/materialCardViewFilledStyle"
     card_view:contentPadding="2dp"
     >
 
@@ -52,4 +51,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

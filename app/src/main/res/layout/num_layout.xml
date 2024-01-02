@@ -8,9 +8,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
     android:layout_margin="8dp"
-    card_view:cardBackgroundColor="@color/primary_card_weak"
+    style="?attr/materialCardViewFilledStyle"
     card_view:cardCornerRadius="12dp"
-    card_view:cardElevation="2dp"
     card_view:contentPadding="2dp"
     >
 

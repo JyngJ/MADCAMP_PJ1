@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    style="?attr/materialCardViewElevatedStyle">
+    style="?attr/materialCardViewFilledStyle">
 
     <LinearLayout        android:layout_width="match_parent"
         android:layout_height="wrap_content"
