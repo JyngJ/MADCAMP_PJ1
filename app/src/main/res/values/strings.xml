@@ -23,5 +23,7 @@
     <string name="dummy_long"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt vitae mauris sed lacinia. Nullam varius est ac mauris placerat, sed sollicitudin nulla gravida. Vestibulum faucibus odio ac lorem lobortis sagittis. Cras sagittis tristique finibus. Pellentesque diam odio, egestas eu scelerisque ut, cursus at sem.  </string>
 
     <string name="img_description">카드 이미지</string>
+    <string name="write_memo">작성하기</string>
+    <string name="modify_memo">수정하기</string>
 </resources>
 

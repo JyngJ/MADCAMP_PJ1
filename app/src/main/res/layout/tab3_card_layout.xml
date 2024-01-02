@@ -8,11 +8,13 @@
     android:layout_margin="8dp"
     style="?attr/materialCardViewFilledStyle">
 
-    <LinearLayout        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id = "@+id/item_title"
             android:text="@string/dummy_short"
@@ -33,7 +35,8 @@
             android:contentDescription="@string/img_description"
             />
 
-        <LinearLayout            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
@@ -49,6 +52,29 @@
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?android:attr/textColorSecondary"
                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/write_btn"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/write_memo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/modify_btn"
+                    style="?attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modify_memo" />
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -31,6 +32,8 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         var itemImage: ImageView = itemView.findViewById(R.id.image_main)
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
+        var writeButton: MaterialButton = itemView.findViewById(R.id.write_btn)
+        var modifyButton: MaterialButton = itemView.findViewById(R.id.modify_btn)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyAdapter_extra.MyViewHolder {
@@ -57,11 +60,22 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
                 // "memo" 필드의 값을 가져오고, 없으면 "메모 없음"을 사용
                 val memo = jsonObject.optString("memo", "메모 없음")
                 holder.itemDetail.text = memo
+                if (memo == "메모 없음") {
+                    holder.writeButton.visibility = View.VISIBLE
+                    holder.modifyButton.visibility = View.GONE
+                } else {
+                    holder.writeButton.visibility = View.GONE
+                    holder.modifyButton.visibility = View.VISIBLE
+                }
+
             } else {
                 holder.itemDetail.text = "메모 없음"
             }
         } else {
             holder.itemDetail.text = "메모 없음"
+
+            holder.writeButton.visibility = View.VISIBLE
+            holder.modifyButton.visibility = View.GONE
         }
     }
 
