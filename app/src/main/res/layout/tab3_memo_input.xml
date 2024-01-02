@@ -10,63 +10,34 @@
 
 
     <TextView
+        android:id="@+id/input_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/secondary_card_highlight"
-        android:text="@string/add_number"
+        android:text="@string/add_memo"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:minWidth="200dp"
         android:textSize="20sp"
         android:gravity="start"
         android:padding="16dp" />
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:id="@+id/namefield"
+        style="?attr/textInputFilledStyle"
+        android:id="@+id/filledTextField"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/placeholder_name"
-
-        app:errorEnabled="true"
-        app:startIconDrawable="@drawable/person"
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-
+            android:minLines="2"
+            android:inputType="textMultiLine"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:id="@+id/numberfield"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/placeholder_number"
-
-        app:errorEnabled="true"
-        app:startIconDrawable="@drawable/phone"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone"
-            android:digits="0123456789-"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-<!--android:inputType ="phone" constraint 추가하기-->
 
     <LinearLayout
         android:padding="8dp"

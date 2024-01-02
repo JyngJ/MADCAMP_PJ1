@@ -1,5 +1,6 @@
 package com.example.tab_pj
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -16,17 +16,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.tab_pj.MyAdapter_num
 import androidx.lifecycle.ViewModelProvider
 
 
@@ -92,10 +86,12 @@ class NumFragment : Fragment() {
         val dialog = Dialog(requireContext(), android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.popup_number_input)
 
+        //다이얼로그 가로 너비 지정 (=전체 -32)
         val metrics = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
-        val width = metrics.widthPixels - (8 * 4)
-        val popupWidth = (width / 4) * 3 + 16.dpToPixels(requireContext())
+        (context as Activity).windowManager.defaultDisplay.getMetrics(metrics)
+        val screenWidth = metrics.widthPixels
+        val margin = 32.dpToPixels(context as Activity)  // 32dp를 픽셀로 변환
+        val popupWidth = screenWidth - margin
 
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
 

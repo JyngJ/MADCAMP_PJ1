@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.app.ActivityCompat
@@ -106,17 +105,6 @@ class PhotoFragment : Fragment() {
 
             dialog.dismiss()
         }
-
-//        // 연락처로 이동 버튼 클릭 시 동작
-//        cameraButton.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//
-//        // 저장 버튼 클릭 시 동작
-//        saveButton.setOnClickListener {
-//            dialog.dismiss()
-//        }
-
         // 취소 버튼 클릭 시 동작
         cancelButton.setOnClickListener {
             // 팝업을 닫는다.
