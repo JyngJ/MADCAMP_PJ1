@@ -8,17 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.PopupMenu
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.File
 
 class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : RecyclerView.Adapter<MyAdapter_extra.MyViewHolder>() {
@@ -65,7 +61,7 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
             val jsonArray = JSONArray(jsonString)
 
             // 해당 위치의 JSON 객체 가져오기
-            if (position >= 0 && position < jsonArray.length())  {
+            if (position < jsonArray.length())  {
                 val jsonObject = jsonArray.getJSONObject(position)
 
                 // "memo" 필드의 값을 가져오고, 없으면 "메모 없음"을 사용
@@ -117,10 +113,12 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.tab3_memo_input)
 
+        //다이얼로그 가로 너비 지정 (=전체 -32)
         val metrics = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(metrics)
-        val width = metrics.widthPixels - (8 * 4)
-        val popupWidth = (width / 4) * 3 + 16.dpToPixels(context)
+        val screenWidth = metrics.widthPixels
+        val margin = 32.dpToPixels(context)  // 32dp를 픽셀로 변환
+        val popupWidth = screenWidth - margin
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
 
         val textInputLayout = dialog.findViewById<TextInputLayout>(R.id.filledTextField)
@@ -149,7 +147,6 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
     }
 
 //1 팝업 크기 좀 키우기 (세로 )
-// 위에 나오는 텍스트 바꾸기
 
         override fun getItemCount(): Int {
         return names.size

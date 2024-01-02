@@ -18,13 +18,10 @@ import android.widget.PopupMenu
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
-import android.view.MenuInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-
 
 class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
@@ -81,7 +78,8 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
                     true
                 }
                 R.id.action_modify -> {
-                    showEditDialog(cancelButton.context, position, cancelButton.height + cancelButton.paddingTop)
+                    val currentItem = dataList[position]
+                    showEditDialog(cancelButton.context, position, currentItem.title, currentItem.detail, cancelButton.height + cancelButton.paddingTop)
                     true
                 }
                 else -> false
@@ -145,16 +143,18 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
         }
     }
 
-    private fun showEditDialog(context: Context, position: Int, yOffset: Int) {
+    private fun showEditDialog(context: Context, position: Int, currentTitle: String, currentDetail: String, yOffset: Int) {
         val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.popup_number_modify)
 
+        //다이얼로그 가로 너비 지정 (=전체 -32)
         val metrics = DisplayMetrics()
         (context as Activity).windowManager.defaultDisplay.getMetrics(metrics)
-        val width = metrics.widthPixels - (8 * 4)
-        val popupWidth = (width / 4) * 3 + 16.dpToPixels(context)
-
+        val screenWidth = metrics.widthPixels
+        val margin = 32.dpToPixels(context)  // 32dp를 픽셀로 변환
+        val popupWidth = screenWidth - margin
         dialog.window?.setLayout(popupWidth, LinearLayout.LayoutParams.WRAP_CONTENT)
+
 
         //팝업 위치 조정
         val windowParams = dialog.window?.attributes
@@ -163,6 +163,10 @@ class MyAdapter_num : RecyclerView.Adapter<MyAdapter_num.MyViewHolder>() {
 
         val firstTextField = dialog.findViewById<EditText>(R.id.editTextName)
         val secondTextField = dialog.findViewById<EditText>(R.id.editTextNumber)
+
+        firstTextField.setText(currentTitle)
+        secondTextField.setText(currentDetail)
+
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
 

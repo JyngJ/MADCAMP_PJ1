@@ -17,8 +17,8 @@
         android:text="@string/add_memo"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
-        android:gravity="left"
+        android:textSize="20sp"
+        android:gravity="start"
         android:padding="16dp" />
 
 
@@ -33,6 +33,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minLines="2"
+            android:inputType="textMultiLine"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

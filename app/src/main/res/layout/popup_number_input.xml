@@ -16,8 +16,9 @@
         android:text="@string/add_number"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
-        android:gravity="left"
+        android:minWidth="200dp"
+        android:textSize="20sp"
+        android:gravity="start"
         android:padding="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +61,7 @@
             android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:inputType="phone"
             android:digits="0123456789-"
             />
 
