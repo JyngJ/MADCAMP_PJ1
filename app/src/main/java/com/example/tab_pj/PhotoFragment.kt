@@ -1,3 +1,5 @@
+package com.example.tab_pj
+
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
@@ -177,12 +179,14 @@ class PhotoFragment : Fragment() {
             val selectedItem = contactSpinner.selectedItem.toString()
             val currentTime = getCurrentTime()
             val newItem = PhotoItem(selectedImageUri, selectedItem, currentTime, R.drawable.ic_launcher_foreground)
+
+            // Update local list and RecyclerView
             photoItems.add(newItem)
-
-            viewModel.setPhotosForTitle(selectedItem, viewModel.getPhotosForTitle(selectedItem).value.orEmpty() + newItem)
-
-            // Notify the adapter that data has changed
             recyclerView.adapter?.notifyDataSetChanged()
+
+            // Update SharedViewModel
+            val currentList = viewModel.getPhotosForTitle(selectedItem).value.orEmpty()
+            viewModel.setPhotosForTitle(selectedItem, currentList + newItem)
 
             dialog.dismiss()
         }

@@ -29,8 +29,16 @@ class ExtraFragment : Fragment () {
 
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-        adapter = MyAdapter_extra(updatedNames, viewModel.getPhotosMap(), requireContext())
+        // Extract the current value from the LiveData object
+        val currentPhotosMap = viewModel.getPhotosMap().value ?: emptyMap()
+
+        adapter = MyAdapter_extra(updatedNames, currentPhotosMap, requireContext())
         recyclerView.adapter = adapter
+
+        // Observe the LiveData for changes
+        viewModel.getPhotosMap().observe(viewLifecycleOwner, { photosMap ->
+            adapter.updateData(photosMap)
+        })
 
         return view
     }
@@ -74,7 +82,6 @@ class ExtraFragment : Fragment () {
 
         return array
     }
-
 }
 
 
