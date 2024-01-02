@@ -56,6 +56,8 @@ class PhotoFragment : Fragment() {
 
     private fun loadPhotoItems() {
         val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref", Activity.MODE_PRIVATE)
+        Log.d("PhotoFragment", "SharedPreferences: $sharedPreferences")
+
         val gson = Gson()
         val json = sharedPreferences.getString("photoItems", null)
         Log.d("PhotoFragment", "Loaded JSON: $json")
@@ -64,18 +66,18 @@ class PhotoFragment : Fragment() {
         try {
             if (json != null) {
                 val loadedItems: MutableList<PhotoItem> = gson.fromJson(json, type)
+                Log.d("PhotoFragment", "Deserialized photoItems: $loadedItems")
+
                 photoItems.clear()
                 photoItems.addAll(loadedItems)
-                Log.d("PhotoFragment", "Loaded photoItems: $photoItems")
             } else {
-                // 로그로 JSON이 null임을 알림
                 Log.d("PhotoFragment", "No photo items found in SharedPreferences")
             }
         } catch (e: Exception) {
-            // 예외 발생 시 로그 출력
             Log.e("PhotoFragment", "Error loading photo items", e)
         }
     }
+
 
     override fun onPause() {
         super.onPause()

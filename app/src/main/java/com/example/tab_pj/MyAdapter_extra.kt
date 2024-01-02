@@ -99,15 +99,26 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
 
     private fun loadAndUpdatePhotosMap() {
         val sharedPreferences = (context as Activity).getSharedPreferences("MySharedPref", Context.MODE_PRIVATE)
+        Log.d("PhotoFragment", "SharedPreferences: $sharedPreferences")
         val gson = Gson()
-        val json = sharedPreferences.getString("photosMap", null)
+        val json = sharedPreferences.getString("photoItems", null)
         Log.d("MyAdapter_extra", "Loaded JSON: $json")
-        if (json != null) {
-            val type = object : TypeToken<Map<String, List<PhotoItem>>>() {}.type
-            val loadedPhotosMap = gson.fromJson<Map<String, List<PhotoItem>>>(json, type)
-            updateData(loadedPhotosMap) // 업데이트된 photosMap으로 데이터 갱신
-        } else {
-            Log.d("MyAdapter_extra", "No photosMap found in SharedPreferences")
+
+
+        try {
+            if (json != null) {
+                val type = object : TypeToken<List<PhotoItem>>() {}.type
+                val loadedItems = gson.fromJson<List<PhotoItem>>(json, type)
+                Log.d("MyAdapter_extra", "Deserialized photoItems: $loadedItems")
+
+                // title을 기준으로 PhotoItem 리스트를 Map으로 그룹화
+                val newPhotosMap = loadedItems.groupBy { it.title }
+                updateData(newPhotosMap)
+            } else {
+                Log.d("MyAdapter_extra", "No photosMap found in SharedPreferences")
+            }
+        } catch (e: Exception) {
+                Log.e("PhotoFragment", "Error loading photo items", e)
         }
     }
 
