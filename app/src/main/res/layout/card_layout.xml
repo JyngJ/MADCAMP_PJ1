@@ -10,12 +10,14 @@
     card_view:cardCornerRadius="12dp"
     style="?attr/materialCardViewFilledStyle"
     card_view:contentPadding="2dp"
+    card_view:strokeWidth="1dp"
+    card_view:strokeColor="@color/primary_card_highlight"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/item_image"

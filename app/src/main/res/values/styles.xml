@@ -6,4 +6,11 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ToolbarTitleStyle" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.04</item>
+        <!-- letter spacing는 percentage 값이므로 -4%는 -0.04로 표현됩니다 -->
+    </style>
+
 </resources>
+
