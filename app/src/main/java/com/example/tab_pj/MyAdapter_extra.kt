@@ -113,7 +113,8 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
 
                 // title을 기준으로 PhotoItem 리스트를 Map으로 그룹화
                 val newPhotosMap = loadedItems.groupBy { it.title }
-                updateData(newPhotosMap)
+                //updateData(newPhotosMap)
+                photosMap = newPhotosMap
             } else {
                 Log.d("MyAdapter_extra", "No photosMap found in SharedPreferences")
             }
