@@ -155,12 +155,18 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
             return ImageViewHolder(view)
         }
         override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-            val photoItem = photos[position]
-            Glide.with(context).load(photoItem.imageUri).into(holder.imageView)
+            if (photos.isNotEmpty()) {
+                // 사용자가 추가한 사진이 있는 경우
+                val photoItem = photos[position]
+                Glide.with(context).load(photoItem.imageUri).into(holder.imageView)
+            } else {
+                // 사진이 없는 경우 placeholder 이미지 로드
+                Glide.with(context).load(R.drawable.placeholder_no_image).into(holder.imageView)
+            }
         }
 
         override fun getItemCount(): Int {
-            return photos.size
+            return if (photos.isNotEmpty()) photos.size else 1 // 사진이 없는 경우 placeholder를 위한 1 반환
         }
 
         inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
