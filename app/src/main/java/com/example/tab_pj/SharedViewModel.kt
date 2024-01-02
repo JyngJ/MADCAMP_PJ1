@@ -3,6 +3,7 @@ package com.example.tab_pj
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.google.gson.Gson
 import java.io.File
@@ -27,5 +28,21 @@ class SharedViewModel : ViewModel() {
             val dataItems = Gson().fromJson<List<MyAdapter_num.DataItem>>(jsonString, listType)
             numData.value = dataItems
         }
+    }
+
+    private val photosMap = MutableLiveData<Map<String, List<PhotoItem>>>()
+
+    fun getPhotosMap(): LiveData<Map<String, List<PhotoItem>>> {
+        return photosMap
+    }
+
+    fun setPhotosForTitle(title: String, photos: List<PhotoItem>) {
+        val updatedMap = photosMap.value.orEmpty().toMutableMap()
+        updatedMap[title] = photos
+        photosMap.value = updatedMap
+    }
+
+    fun getPhotosForTitle(title: String): LiveData<List<PhotoItem>> {
+        return Transformations.map(photosMap) { it[title].orEmpty() }
     }
 }

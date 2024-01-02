@@ -10,24 +10,26 @@ import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONArray
 import java.io.File
 import android.content.Context
+import androidx.lifecycle.ViewModelProvider
 
 class ExtraFragment : Fragment () {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MyAdapter_num
+    private lateinit var adapter: MyAdapter_extra
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_extra, container, false)
 
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerview_extra)
-        val layoutManager = GridLayoutManager(requireContext(), 1)
-        recyclerView.layoutManager = layoutManager
+        recyclerView = view.findViewById(R.id.recyclerview_extra)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
 
         val names = ArrayList<String>()
         val updatedNames = updateNames(requireContext(), names)
 
-        val adapter = MyAdapter_extra(updatedNames, requireContext())
+        val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+
+        adapter = MyAdapter_extra(updatedNames, viewModel.getPhotosMap(), requireContext())
         recyclerView.adapter = adapter
 
         return view

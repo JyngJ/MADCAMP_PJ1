@@ -179,6 +179,8 @@ class PhotoFragment : Fragment() {
             val newItem = PhotoItem(selectedImageUri, selectedItem, currentTime, R.drawable.ic_launcher_foreground)
             photoItems.add(newItem)
 
+            viewModel.setPhotosForTitle(selectedItem, viewModel.getPhotosForTitle(selectedItem).value.orEmpty() + newItem)
+
             // Notify the adapter that data has changed
             recyclerView.adapter?.notifyDataSetChanged()
 
