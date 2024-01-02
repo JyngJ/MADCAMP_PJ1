@@ -21,9 +21,10 @@ class SharedViewModel : ViewModel() {
         return photosMap
     }
 
-    fun setPhotosForTitle(title: String, photos: List<PhotoItem>) {
+    fun setPhotosForTitle(title: String, newPhotos: List<PhotoItem>) {
         val updatedMap = photosMap.value.orEmpty().toMutableMap()
-        updatedMap[title] = photos
+        val currentPhotos = updatedMap[title].orEmpty()
+        updatedMap[title] = currentPhotos + newPhotos
         photosMap.value = updatedMap
     }
 

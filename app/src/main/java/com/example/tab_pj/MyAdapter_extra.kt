@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +47,6 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         holder.viewPager.adapter = adapter
 
         if (position <= titles.size) {
-//            holder.itemImage.setImageResource(images[0]) // 사진 업데이트
             holder.itemTitle.text = titles[position] // 제목 업데이트
         }
         val jsonFileName = "Num.json"
