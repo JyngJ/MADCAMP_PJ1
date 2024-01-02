@@ -90,12 +90,12 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         }
 
         holder.writeButton.setOnClickListener {
-            showDialog(position, "")
+            showDialog(position, "", false)
         }
 
         holder.modifyButton.setOnClickListener {
             val memo = getMemo(position)
-            showDialog(position, memo)
+            showDialog(position, memo, true)
         }
     }
 
@@ -113,7 +113,7 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
         return ""
     }
 
-    private fun showDialog(position: Int, existingMemo: String) {
+    private fun showDialog(position: Int, existingMemo: String, isModify: Boolean) {
         val dialog = Dialog(context, android.R.style.Theme_Material_Light_Dialog_NoActionBar)
         dialog.setContentView(R.layout.tab3_memo_input)
 
@@ -129,6 +129,9 @@ class MyAdapter_extra(val names: ArrayList<String>, val context: Context) : Recy
 
         val saveButton = dialog.findViewById<Button>(R.id.saveButton)
         val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+
+        val titleTextView = dialog.findViewById<TextView>(R.id.input_title) // TextView의 ID를 확인하세요.
+        titleTextView.text = if (isModify) context.getString(R.string.modify_memo_title) else context.getString(R.string.add_memo)
 
         saveButton.setOnClickListener {
             val inputText = editText?.text.toString()
