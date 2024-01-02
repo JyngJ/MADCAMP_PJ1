@@ -18,19 +18,21 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
 import java.io.File
 
 class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<String, List<PhotoItem>>, val context: Context) : RecyclerView.Adapter<MyAdapter_extra.MyViewHolder>() {
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var viewPager: ViewPager2 = itemView.findViewById(R.id.viewPager)
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
         var writeButton: MaterialButton = itemView.findViewById(R.id.write_btn)
         var modifyButton: MaterialButton = itemView.findViewById(R.id.modify_btn)
-
-
     }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): MyViewHolder {
         val v: View = LayoutInflater.from(viewGroup.context)
@@ -41,9 +43,13 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         val title = titles[position]
         holder.itemTitle.text = title
 
+        loadAndUpdatePhotosMap()
+
         // Use the photos for this title
         val photosForTitle = photosMap[title].orEmpty()
+        Log.d("MyAdapter_extra", "title: $title, $photosForTitle")
         val adapter = ImagePagerAdapter(photosForTitle, context)
+
         holder.viewPager.adapter = adapter
 
         if (position <= titles.size) {
@@ -88,6 +94,20 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         holder.modifyButton.setOnClickListener {
             val memo = getMemo(position)
             showDialog(position, memo, true)
+        }
+    }
+
+    private fun loadAndUpdatePhotosMap() {
+        val sharedPreferences = (context as Activity).getSharedPreferences("MySharedPref", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPreferences.getString("photosMap", null)
+        Log.d("MyAdapter_extra", "Loaded JSON: $json")
+        if (json != null) {
+            val type = object : TypeToken<Map<String, List<PhotoItem>>>() {}.type
+            val loadedPhotosMap = gson.fromJson<Map<String, List<PhotoItem>>>(json, type)
+            updateData(loadedPhotosMap) // 업데이트된 photosMap으로 데이터 갱신
+        } else {
+            Log.d("MyAdapter_extra", "No photosMap found in SharedPreferences")
         }
     }
 
@@ -142,12 +162,13 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         dialog.show()
     }
 
-//1 팝업 크기 좀 키우기 (세로 )
 
     fun updateData(newData: Map<String, List<PhotoItem>>) {
         photosMap = newData
         notifyDataSetChanged()
     }
+
+//1 팝업 크기 좀 키우기 (세로 )
 
     inner class ImagePagerAdapter(private val photos: List<PhotoItem>, private val context: Context) : RecyclerView.Adapter<ImagePagerAdapter.ImageViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
@@ -155,6 +176,7 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
             return ImageViewHolder(view)
         }
         override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+
             if (photos.isNotEmpty()) {
                 // 사용자가 추가한 사진이 있는 경우
                 val photoItem = photos[position]

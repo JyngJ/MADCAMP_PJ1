@@ -29,6 +29,7 @@ class ExtraFragment : Fragment () {
 
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
+
         val currentPhotosMap = viewModel.getPhotosMap().value ?: emptyMap()
 
         adapter = MyAdapter_extra(updatedNames, currentPhotosMap, requireContext())
@@ -79,6 +80,8 @@ class ExtraFragment : Fragment () {
 
         return array
     }
+
+
 }
 
 

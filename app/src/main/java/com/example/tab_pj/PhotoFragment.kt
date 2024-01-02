@@ -31,6 +31,7 @@ import com.example.tab_pj.SharedViewModel
 import androidx.lifecycle.Observer
 import java.util.*
 import android.text.format.DateFormat
+import android.util.Log
 import com.example.tab_pj.PhotoItem
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -57,15 +58,22 @@ class PhotoFragment : Fragment() {
         val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref", Activity.MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("photoItems", null)
+        Log.d("PhotoFragment", "Loaded JSON: $json")
+
         val type = object : TypeToken<MutableList<PhotoItem>>() {}.type
         try {
             if (json != null) {
                 val loadedItems: MutableList<PhotoItem> = gson.fromJson(json, type)
                 photoItems.clear()
                 photoItems.addAll(loadedItems)
+                Log.d("PhotoFragment", "Loaded photoItems: $photoItems")
+            } else {
+                // 로그로 JSON이 null임을 알림
+                Log.d("PhotoFragment", "No photo items found in SharedPreferences")
             }
         } catch (e: Exception) {
-            // Log the error or handle it appropriately
+            // 예외 발생 시 로그 출력
+            Log.e("PhotoFragment", "Error loading photo items", e)
         }
     }
 
