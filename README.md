@@ -34,32 +34,10 @@
 </aside>
 
 ![1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/8c1a643c-06cc-4c12-a1a4-dea22c7653e6)
+연락처 보기          연락처 수정하기 팝업          수정 완료 토스트
 ![1 1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/59c5a57a-bb2e-4a9e-b59b-240d403352e9)
+연락처 추가하기 팝업          이름 미입력          전화번호 미입력
 
-
-![탭1_연락처 보기.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/7e947799-58d7-4ddc-8b53-099569c5bec9/%ED%83%AD1_%EC%97%B0%EB%9D%BD%EC%B2%98_%EB%B3%B4%EA%B8%B0.jpg)
-
-연락처 보기
-
-![탭1_연락처 추가하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/32e4b106-b778-44f9-b9d0-9e4651a6aa2d/%ED%83%AD1_%EC%97%B0%EB%9D%BD%EC%B2%98_%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-연락처 추가하기 팝업
-
-![탭1_연락처 수정하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/6434177a-b3b9-4072-ab37-0b64090a068f/%ED%83%AD1_%EC%97%B0%EB%9D%BD%EC%B2%98_%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-연락처 수정하기 팝업
-
-![탭1_연락처 추가하기 팝업-이름 미입력.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/3ea9d086-09c7-4458-b524-9644e38d7926/%ED%83%AD1_%EC%97%B0%EB%9D%BD%EC%B2%98_%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85-%EC%9D%B4%EB%A6%84_%EB%AF%B8%EC%9E%85%EB%A0%A5.jpg)
-
-이름 미입력
-
-![탭1_수정완료 토스트.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/829330fb-5b4d-4de9-96d0-1d8016bc292e/%ED%83%AD1_%EC%88%98%EC%A0%95%EC%99%84%EB%A3%8C_%ED%86%A0%EC%8A%A4%ED%8A%B8.jpg)
-
-수정 완료 토스트
-
-![탭1_연락처 추가하기 팝업-전화번호 미입력.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d582e033-499e-4edb-9819-d20b7b7fb458/%ED%83%AD1_%EC%97%B0%EB%9D%BD%EC%B2%98_%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85-%EC%A0%84%ED%99%94%EB%B2%88%ED%98%B8_%EB%AF%B8%EC%9E%85%EB%A0%A5.jpg)
-
-전화번호 미입력
 
 <aside>
 📷 **탭 2: Gallery**
