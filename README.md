@@ -4,10 +4,9 @@
 🙌 **프렌디는 친구들과 내가 함께한 시간을 기록할 수 있는 애플리케이션입니다.**
 
 프렌디가 제공하는 주소록, 사진첩, 메모 기능을 이용해 친구들과의 소중한 추억들을 기록하세요 !
+![Group 4](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/40d51118-3aed-4370-a06e-364b63660450)
 
 </aside>
-
-![Group 4.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/3d129046-2607-4c3c-9d6a-23a882520ad7/Group_4.png)
 
 ## **팀원**
 
@@ -20,6 +19,8 @@
 - **언어**: Kotlin
 - **OS**: Android
 - **Sdk**: 33
+
+---
 
 ## **프로젝트 개요**
 
@@ -103,9 +104,12 @@
 
 다이어리 보기
 
+---
+
 ## 로고, 앱 아이콘
 
-![Group 6.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/598fa9c8-6384-41e4-88b8-1e6282b6fe8f/Group_6.png)
+![icon, logo](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/941bc228-abc8-49a1-b7f7-683fc2b51680)
+
 
 ### 로고
 
@@ -127,8 +131,14 @@ Google의 Material Design3를 바탕으로 primary 컬러를 재정의하여 사
 
 Google의 Material Design3의 기본 폰트 **Roboto**를 사용했습니다
 
-![design sys.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/51446ec6-4ea8-46c5-b01f-414fafd11a28/design_sys.png)
+![design sys](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/2733f229-1dd7-4c4a-9987-9c7614c7feff)
+
 
 ### 그리드 시스템
 
 **Gutter 16dp, Margin 16dp**의 **4 Columns Grid System**을 사용하였습니다.
+
+![Group 11](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/e499be09-4d06-433a-8585-d2f2f95a6ded)
+
+
+
