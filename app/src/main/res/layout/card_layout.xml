@@ -57,15 +57,6 @@
             android:textColor="@color/primary_card_highlight"
             android:textSize="12dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/delete_btn"
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_btn" />
-
     </RelativeLayout>
-
-
 
 </com.google.android.material.card.MaterialCardView>

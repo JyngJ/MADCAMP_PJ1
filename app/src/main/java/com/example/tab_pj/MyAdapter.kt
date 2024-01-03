@@ -33,15 +33,21 @@ class MyAdapter(
         val currentItem = items[position]
         holder.itemTitle.text = currentItem.title
         holder.itemDetail.text = currentItem.saveTime
-    if (currentItem.imageUriString != null) {
-        // 이미지 URI가 있는 경우 Glide를 사용하여 이미지 로드
-        Glide.with(holder.itemView)
-            .load(currentItem.imageUriString)
-            .into(holder.itemImage)
-    } else {
-        // 이미지 URI가 없는 경우 이미지 리소스 ID 사용
-        holder.itemImage.setImageResource(currentItem.imageResourceId)
-    }
+
+        holder.deleteBtn.setOnClickListener {
+            // 아이템을 삭제하고 콜백을 호출합니다
+            items.removeAt(holder.adapterPosition)
+            notifyItemRemoved(holder.adapterPosition)
+            onDeleteClicked(currentItem)
+        }
+
+        if (currentItem.imageUriString != null) {
+            Glide.with(holder.itemView)
+                .load(currentItem.imageUriString)
+                .into(holder.itemImage)
+        } else {
+            holder.itemImage.setImageResource(currentItem.imageResourceId)
+        }
     }
 
     override fun getItemCount(): Int {
