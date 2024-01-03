@@ -34,11 +34,14 @@
 - **연락처 수정 및 삭제**: 저장된 연락처를 수정하거나 삭제할 수 있습니다.
 </aside>
 
-![1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/8c1a643c-06cc-4c12-a1a4-dea22c7653e6)
+
+![스크린샷 2024-01-03 오후 8 50 06](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/761e7d05-0ad6-4a95-a629-90f3fceebe64)
 
 연락처 보기              연락처 수정하기 팝업           수정 완료 토스트
 
-![1 1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/59c5a57a-bb2e-4a9e-b59b-240d403352e9)
+
+
+![스크린샷 2024-01-03 오후 8 50 49](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/de9b07ba-c813-42ef-b189-f2dde621e1cc)
 
 연락처 추가하기 팝업              이름 미입력             전화번호 미입력
 
@@ -51,7 +54,8 @@
 - **사진 삭제**: 저장된 사진을 삭제할 수 있습니다.
 </aside>
 
-![2](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/d4bff26d-343f-433d-9ec7-5394a6a9d4ad)
+![스크린샷 2024-01-03 오후 8 50 58](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/b15260e3-516a-4362-a994-29c479283b74)
+
 갤러리 보기                사진 추가하기 팝업             연락처 선택하기 팝업
 
 
@@ -62,11 +66,13 @@
 - **메모**: 각 연락처에 대한 메모를 작성, 삭제 및 수정할 수 있습니다.
 </aside>
 
-![3](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/4611c749-345f-42e6-9d22-cb48b0ac01ed)
+
+![스크린샷 2024-01-03 오후 8 51 05](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/fca39f76-16f8-43a9-97a7-23df9145ec91)
 
 사진 추가 전 다이어리             메모 작성하기 팝업            다이어리 보기
 
-![3 1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/bff03439-bc4a-4c72-b317-ca5d81607899)
+
+![스크린샷 2024-01-03 오후 8 52 02](https://github.com/JyngJ/MADCAMP_PJ1/assets/98818455/198468a4-9c0d-4011-8c28-b11aa0542991)
 
 메모 수정하기 팝업             친구별로 사진 모아보기
 
