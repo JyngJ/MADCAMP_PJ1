@@ -51,4 +51,18 @@ class SharedViewModel : ViewModel() {
             numData.value = dataItems
         }
     }
+
+    fun deletePhotoItem(photoItem: PhotoItem) {
+        val updatedMap = photosMap.value.orEmpty().toMutableMap()
+
+        // 'photoItem'이 속한 'title' 찾기
+        val title = updatedMap.entries.find { entry -> photoItem in entry.value }?.key
+
+        // 해당 'title'의 리스트에서 'photoItem' 삭제
+        if (title != null) {
+            val updatedPhotos = updatedMap[title].orEmpty().filter { it != photoItem }
+            updatedMap[title] = updatedPhotos
+            photosMap.value = updatedMap
+        }
+    }
 }

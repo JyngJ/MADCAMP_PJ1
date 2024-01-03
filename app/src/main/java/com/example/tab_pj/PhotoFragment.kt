@@ -44,6 +44,8 @@ class PhotoFragment : Fragment() {
     private var selectedImageUri: Uri? = null // 선택한 이미지의 URI를 저장하는 변수
     private var photoItems = mutableListOf<PhotoItem>()
     private lateinit var recyclerView: RecyclerView
+    private lateinit var viewModel: SharedViewModel
+    private lateinit var adapter: MyAdapter
 
     private fun savePhotoItems() {
         val sharedPreferences = requireActivity().getSharedPreferences("MySharedPref", Activity.MODE_PRIVATE)
@@ -91,10 +93,14 @@ class PhotoFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_photo, container, false)
 
         loadPhotoItems()
+        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        setupRecyclerView(view)
 
         recyclerView = view.findViewById(R.id.recyclerview_main)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.adapter = MyAdapter(photoItems)
+        recyclerView.adapter = MyAdapter(photoItems, onDeleteClicked = { photoItem ->
+            deletePhotoItem(photoItem)
+        })
 
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         viewModel.loadNumData(requireContext()) // JSON 데이터 로드
@@ -121,6 +127,21 @@ class PhotoFragment : Fragment() {
         return view
     }
 
+    private fun setupRecyclerView(view: View) {
+        recyclerView = view.findViewById(R.id.recyclerview_main)
+        recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        adapter = MyAdapter(photoItems, onDeleteClicked = { photoItem ->
+            deletePhotoItem(photoItem)
+        })
+        recyclerView.adapter = adapter
+    }
+
+    private fun deletePhotoItem(photoItem: PhotoItem) {
+        viewModel.deletePhotoItem(photoItem)
+        photoItems.remove(photoItem)
+        adapter.notifyDataSetChanged()
+    }
+
     private fun showPhotoPopup() {
 
         // 팝업 레이아웃을 인플레이트
@@ -132,8 +153,6 @@ class PhotoFragment : Fragment() {
 
         // 팝업 내부의 버튼 처리
         val galleryButton = popupView.findViewById<Button>(R.id.galleryButton)
-//        val cameraButton = popupView.findViewById<Button>(R.id.cameraButton)
-//        val saveButton = popupView.findViewById<Button>(R.id.saveButton)
         val cancelButton = popupView.findViewById<Button>(R.id.cancelButton)
 
         // 갤러리로 이동 버튼 클릭 시 동작
