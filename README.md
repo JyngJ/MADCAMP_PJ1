@@ -47,17 +47,9 @@
 - **사진 삭제**: 저장된 사진을 삭제할 수 있습니다.
 </aside>
 
-![탭2_갤러리 보기.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/53e696b5-32f3-4364-a98c-b4f37b1a70d7/%ED%83%AD2_%EA%B0%A4%EB%9F%AC%EB%A6%AC_%EB%B3%B4%EA%B8%B0.jpg)
+![2](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/d4bff26d-343f-433d-9ec7-5394a6a9d4ad)
+갤러리 보기          사진 추가하기 팝업          연락처 선택하기 팝업
 
-갤러리 보기
-
-![탭2_사진 추가하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/cbcf090c-c38a-445e-a90e-0b59dd44ccfc/%ED%83%AD2_%EC%82%AC%EC%A7%84_%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-사진 추가하기 팝업
-
-![탭2_연락처 선택하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/90a35e51-2adf-4114-8dea-aa0fe8fe7c8b/%ED%83%AD2_%EC%97%B0%EB%9D%BD%EC%B2%98_%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-연락처 선택하기 팝업
 
 <aside>
 📝 **탭 3: Diary**
@@ -66,25 +58,10 @@
 - **메모**: 각 연락처에 대한 메모를 작성, 삭제 및 수정할 수 있습니다.
 </aside>
 
-![탭3_이미지 추가 전.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/8df96eee-3a01-410c-b059-ef8ff02495f2/%ED%83%AD3_%EC%9D%B4%EB%AF%B8%EC%A7%80_%EC%B6%94%EA%B0%80_%EC%A0%84.jpg)
-
-사진 추가 전 다이어리
-
-![탭3_메모 수정하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/5cfb56e9-929b-4a97-abb6-290e02f10830/%ED%83%AD3_%EB%A9%94%EB%AA%A8_%EC%88%98%EC%A0%95%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-메모 수정하기 팝업
-
-![탭3_메모 작성하기 팝업.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/a1cf6911-856e-4e16-82d6-ac68be5a1972/%ED%83%AD3_%EB%A9%94%EB%AA%A8_%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0_%ED%8C%9D%EC%97%85.jpg)
-
-메모 작성하기 팝업
-
-![탭3_이미지 슬라이드.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/1ab6640b-1ce4-463f-bc80-044c13585967/%ED%83%AD3_%EC%9D%B4%EB%AF%B8%EC%A7%80_%EC%8A%AC%EB%9D%BC%EC%9D%B4%EB%93%9C.jpg)
-
-친구별로 사진 모아보기
-
-![탭3_다이어리 보기.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/d719ddb3-e218-4ee3-b157-2ed6e45da494/%ED%83%AD3_%EB%8B%A4%EC%9D%B4%EC%96%B4%EB%A6%AC_%EB%B3%B4%EA%B8%B0.jpg)
-
-다이어리 보기
+![3](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/4611c749-345f-42e6-9d22-cb48b0ac01ed)
+사진 추가 전 다이어리          메모 작성하기 팝업          다이어리 보기
+![3 1](https://github.com/JyngJ/MADCAMP_PJ1/assets/114678336/bff03439-bc4a-4c72-b317-ca5d81607899)
+메모 수정하기 팝업          친구별로 사진 모아보기
 
 ---
 
