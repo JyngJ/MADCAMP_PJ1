@@ -28,5 +28,6 @@
     <string name="write_memo">작성하기</string>
     <string name="modify_memo">수정하기</string>
     <string name="modify_memo_title">메모 수정하기</string>
+    <string name="delete_btn">삭제하기</string>
 </resources>
 

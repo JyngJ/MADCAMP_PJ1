@@ -94,7 +94,7 @@ class PhotoFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerview_main)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerView.adapter = MyAdapter(photoItems)
+        recyclerView.adapter = MyAdapter(photoItems, requireContext())
 
         val viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
         viewModel.loadNumData(requireContext()) // JSON 데이터 로드
