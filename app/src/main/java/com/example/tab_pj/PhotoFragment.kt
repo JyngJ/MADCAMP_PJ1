@@ -153,6 +153,8 @@ class PhotoFragment : Fragment() {
 
         // 팝업 내부의 버튼 처리
         val galleryButton = popupView.findViewById<Button>(R.id.galleryButton)
+//        val cameraButton = popupView.findViewById<Button>(R.id.cameraButton)
+//        val saveButton = popupView.findViewById<Button>(R.id.saveButton)
         val cancelButton = popupView.findViewById<Button>(R.id.cancelButton)
 
         // 갤러리로 이동 버튼 클릭 시 동작

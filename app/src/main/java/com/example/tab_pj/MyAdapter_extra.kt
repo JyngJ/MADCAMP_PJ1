@@ -48,7 +48,7 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
 
         // Use the photos for this title
         val photosForTitle = photosMap[title].orEmpty()
-        Log.d("MyAdapter_extra", "title: $title, $photosForTitle")
+
         val adapter = ImagePagerAdapter(photosForTitle, context)
 
         holder.viewPager.adapter = adapter
