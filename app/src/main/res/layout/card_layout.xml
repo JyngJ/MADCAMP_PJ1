@@ -2,7 +2,6 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/card_view"
@@ -11,34 +10,25 @@
     style="?attr/materialCardViewFilledStyle"
     card_view:contentPadding="2dp"
     card_view:strokeWidth="1dp"
-    card_view:strokeColor="@color/primary_card_highlight"
-    >
+    card_view:strokeColor="@color/primary_card_highlight">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-        <Button
-            android:id="@+id/deleteBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="삭제하기" />
-
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp" />
-
+            android:layout_marginEnd="16dp" />
 
         <TextView
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_image"
+            android:layout_below="@id/item_image"
             android:layout_alignLeft="@id/item_image"
             android:layout_alignRight="@id/item_image"
             android:gravity="center"
@@ -47,15 +37,26 @@
             android:textSize="16dp" />
 
         <TextView
+            android:id="@+id/item_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/item_detail"
-            android:layout_below="@+id/item_title"
+            android:layout_below="@id/item_title"
             android:layout_alignLeft="@id/item_title"
             android:layout_alignRight="@id/item_title"
             android:gravity="center"
             android:textColor="@color/primary_card_highlight"
             android:textSize="12dp"/>
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_btn"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/item_detail"
+            style="?attr/borderlessButtonStyle"
+            android:textColor="@color/error_color"
+             />
 
     </RelativeLayout>
 
