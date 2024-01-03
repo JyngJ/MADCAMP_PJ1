@@ -40,6 +40,10 @@ android {
 }
 
 dependencies {
+    val splashScreenVersion = "1.0.0"
+    // Use: def instead of val if you are not using Kotlin Gradle(.kts)
+
+    implementation("androidx.core:core-splashscreen:$splashScreenVersion")
     implementation ("com.google.code.gson:gson:2.8.6'")
 
     implementation ("com.github.bumptech.glide:glide:4.12.0") // Glide 라이브러리 버전은 최신 버전으로 업데이트 가능

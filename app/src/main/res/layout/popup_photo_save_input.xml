@@ -36,13 +36,6 @@
         android:spinnerMode="dropdown"
         android:padding="8dp"/>
 
-<!--    <com.google.android.material.button.MaterialButton-->
-<!--        android:id="@+id/cameraButton"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="카메라로 촬영"-->
-<!--        android:backgroundTint="@color/primary_card_highlight"-->
-<!--        android:layout_margin="8dp"/>-->
 
     <LinearLayout
         android:padding="8dp"
@@ -60,7 +53,7 @@
             android:backgroundTint="@color/white"
             android:textColor="@android:color/black"
             app:strokeWidth="2dp"
-            app:strokeColor="@color/primary_card_highlight"
+            app:strokeColor="@color/secondary_card_highlight"
             android:layout_marginEnd="8dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -69,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="저장"
-            android:backgroundTint="@color/primary_card_highlight"
+            android:backgroundTint="@color/secondary_card_highlight"
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 </LinearLayout>

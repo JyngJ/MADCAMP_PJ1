@@ -7,9 +7,11 @@ import com.google.android.material.tabs.TabLayout
 import androidx.fragment.app.Fragment
 
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
