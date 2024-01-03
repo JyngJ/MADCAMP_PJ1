@@ -30,6 +30,7 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
         var itemTitle: TextView = itemView.findViewById(R.id.item_title)
         var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
         var writeButton: MaterialButton = itemView.findViewById(R.id.write_btn)
+        var deleteButton: MaterialButton = itemView.findViewById(R.id.delete_btn)
         var modifyButton: MaterialButton = itemView.findViewById(R.id.modify_btn)
     }
 
@@ -71,9 +72,11 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
                 holder.itemDetail.text = memo
                 if (memo == "메모 없음") {
                     holder.writeButton.visibility = View.VISIBLE
+                    holder.deleteButton.visibility = View.GONE
                     holder.modifyButton.visibility = View.GONE
                 } else {
                     holder.writeButton.visibility = View.GONE
+                    holder.deleteButton.visibility = View.VISIBLE
                     holder.modifyButton.visibility = View.VISIBLE
                 }
 
@@ -84,11 +87,21 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
             holder.itemDetail.text = "메모 없음"
 
             holder.writeButton.visibility = View.VISIBLE
+            holder.deleteButton.visibility = View.GONE
             holder.modifyButton.visibility = View.GONE
         }
 
         holder.writeButton.setOnClickListener {
             showDialog(position, "", false)
+        }
+
+        holder.deleteButton.setOnClickListener {
+            deleteMemoFromJsonFile(position)
+            notifyDataSetChanged()
+
+            holder.writeButton.visibility = View.VISIBLE
+            holder.deleteButton.visibility = View.GONE
+            holder.modifyButton.visibility = View.GONE
         }
 
         holder.modifyButton.setOnClickListener {
@@ -178,6 +191,24 @@ class MyAdapter_extra(val titles: List<String>, private var photosMap: Map<Strin
     fun updateData(newData: Map<String, List<PhotoItem>>) {
         photosMap = newData
         notifyDataSetChanged()
+    }
+
+    private fun deleteMemoFromJsonFile(position: Int) {
+        val jsonFileName = "Num.json"
+        val file = File(context.filesDir, jsonFileName)
+
+        if (file.exists()) {
+            val jsonString = file.readText()
+            val jsonArray = JSONArray(jsonString)
+
+            if (position < jsonArray.length()) {
+                val jsonObject = jsonArray.getJSONObject(position)
+
+                jsonObject.remove("memo")
+
+                file.writeText(jsonArray.toString())
+            }
+        }
     }
 
 //1 팝업 크기 좀 키우기 (세로 )
